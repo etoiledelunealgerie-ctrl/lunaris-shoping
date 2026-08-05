@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lunaris — Étoile de Lune</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJV56RD5RZ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-JJV56RD5RZ');
+  </script>
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "x9m1yighan");
+  </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --pink:       #C8547A;
+      --pink-light: #F8EEF2;
+      --pink-mid:   #E8C4D2;
+      --pink-dark:  #A03060;
+      --navy:       #1B2A4A;
+      --cream:      #FAF7F2;
+      --gold:       #C8A97A;
+      --warm:       #F2E8E1;
+      --text:       #1a1a1a;
+      --muted:      #777;
+      --green:      #25D366;
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      overflow-x: hidden;
+      position: relative;
+      background: #fbeef3;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: -10%;
+      z-index: -1;
+      background:
+        radial-gradient(circle at 15% 20%, #f6c9dc 0%, transparent 55%),
+        radial-gradient(circle at 85% 15%, #fadce8 0%, transparent 50%),
+        radial-gradient(circle at 30% 80%, #f3bdd4 0%, transparent 55%),
+        radial-gradient(circle at 80% 85%, #fbe1ec 0%, transparent 50%),
+        #fbeef3;
+      filter: blur(60px);
+    }
+    a { text-decoration: none; color: inherit; }
+    img { display: block; max-width: 100%; }
+
+    /* ── ANNOUNCEMENT BAR ── */
+    .announcement-bar {
+      background: var(--navy);
+      color: #fff;
+      text-align: center;
+      padding: 10px 20px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      overflow: hidden;
+    }
+    .announce-scroll {
+      display: inline-flex;
+      gap: 80px;
+      animation: marquee 22s linear infinite;
+      white-space: nowrap;
+    }
+    .announce-scroll span { color: var(--gold); }
+    @keyframes marquee {
+      0%   { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* ── HEADER ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      height: 72px;
+      background: #fff;
+      border-bottom: 1px solid #eee;
+      position: sticky;
+      top: 0;
+      z-index: 200;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--pink);
+      letter-spacing: 3px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .logo-sub {
+      font-family: 'Inter', sans-serif;
+      font-size: 9px;
+      font-weight: 400;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      display: block;
+      margin-top: 2px;
+    }
+    .main-site-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--gold), #b88f5e);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 10px 20px;
+      border-radius: 50px;
+      box-shadow: 0 6px 18px rgba(200,169,122,0.45);
+      transition: transform .2s, box-shadow .2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .main-site-btn::after {
+      content: '';
+      position: absolute;
+      top: 0; left: -60%;
+      width: 40%; height: 100%;
+      background: rgba(255,255,255,0.35);
+      transform: skewX(-20deg);
+      animation: shine 3s ease-in-out infinite;
+    }
+    @keyframes shine { 0% { left: -60%; } 50% { left: 130%; } 100% { left: 130%; } }
+    .main-site-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 26px rgba(200,169,122,0.6); }
+
+    /* ── PRODUCT SECTION ── */
+    .product-section {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 48px 28px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px;
+      align-items: start;
+    }
+    .product-img-wrap {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--pink-light), var(--pink-mid));
+      box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+    }
+    .product-img-wrap img {
+      width: 100%;
+      height: 560px;
+      object-fit: cover;
+      object-position: center top;
+      transition: opacity 0.3s ease;
+    }
+    
+    /* ADDED: Dynamic Thumbnails styling */
+    .thumbnails { 
+      display: flex; 
+      gap: 12px; 
+      margin-top: 16px; 
+      overflow-x: auto; 
+      padding-bottom: 8px; 
+    }
+    .thumbnails::-webkit-scrollbar { height: 4px; }
+    .thumbnails::-webkit-scrollbar-thumb { background: #ddd; border-radius: 4px; }
+    .thumb { 
+      width: 72px; 
+      height: 72px; 
+      object-fit: cover; 
+      border-radius: 12px; 
+      cursor: pointer; 
+      border: 2px solid transparent; 
+      transition: border-color 0.2s; 
+      background: var(--pink-light); 
+      flex-shrink: 0;
+    }
+    .thumb.active { border-color: var(--navy); }
+
+    .stock-flag {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      background: var(--pink-dark);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      padding: 8px 16px;
+      border-radius: 50px;
+      box-shadow: 0 6px 16px rgba(160,48,96,0.4);
+    }
+    .product-info .eyebrow {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--pink);
+      margin-bottom: 10px;
+    }
+    .product-info h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(30px, 4vw, 42px);
+      font-weight: 900;
+      color: var(--navy);
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+    .price-row { display: flex; align-items: baseline; gap: 12px; margin-bottom: 24px; }
+    .price-now {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--pink-dark);
+    }
+    .price-old { font-size: 16px; color: var(--muted); text-decoration: line-through; }
+
+    .option-block { margin-bottom: 22px; }
+    .option-label { font-size: 12px; font-weight: 700; color: var(--navy); letter-spacing: 0.5px; margin-bottom: 10px; text-transform: uppercase; }
+    .swatches { display: flex; gap: 10px; flex-wrap: wrap; }
+    .swatch {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      border: 2px solid #fff;
+      outline: 1px solid #ddd;
+      cursor: pointer;
+      transition: outline-color .15s, transform .15s;
+    }
+    .swatch.selected { outline: 2px solid var(--pink); transform: scale(1.1); }
+    .size-pills { display: flex; gap: 10px; flex-wrap: wrap; }
+    .size-pill {
+      padding: 9px 18px;
+      border: 1.5px solid #ddd;
+      border-radius: 50px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      cursor: pointer;
+      transition: all .15s;
+      background: #fff;
+    }
+    .size-pill.selected { background: var(--navy); color: #fff; border-color: var(--navy); }
+
+    .stock-note {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--pink-dark);
+      background: var(--pink-light);
+      padding: 8px 16px;
+      border-radius: 50px;
+      margin-top: 4px;
+    }
+    .stock-note::before { content: '●'; color: var(--pink-dark); animation: pulse 1.4s ease-in-out infinite; }
+    @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+    /* ── ORDER FORM ── */
+    .order-section {
+      max-width: 700px;
+      margin: 0 auto;
+      padding: 24px 28px 80px;
+    }
+    .order-card {
+      background: var(--cream);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.06);
+    }
+    .order-card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 900;
+      color: var(--navy);
+      margin-bottom: 6px;
+      text-align: center;
+    }
+    .order-card .order-sub {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+    .form-field { margin-bottom: 14px; }
+    .form-field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+    .form-field input, .form-field select {
+      width: 100%;
+      padding: 13px 16px;
+      border-radius: 12px;
+      border: 1.5px solid #e2dcd4;
+      font-size: 14px;
+      font-family: 'Inter', sans-serif;
+      background: #fff;
+      color: var(--text);
+    }
+    .form-field input:focus, .form-field select:focus { outline: none; border-color: var(--pink); }
+    .delivery-toggle { display: flex; gap: 12px; }
+    .delivery-opt {
+      flex: 1;
+      text-align: center;
+      padding: 13px;
+      border-radius: 12px;
+      border: 1.5px solid #e2dcd4;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      cursor: pointer;
+      background: #fff;
+      transition: all .15s;
+    }
+    .delivery-opt.selected { background: var(--navy); color: #fff; border-color: var(--navy); }
+    
+    .delivery-cost-display {
+      text-align: right;
+      font-size: 12px;
+      color: var(--pink-dark);
+      font-weight: 700;
+      margin-top: 8px;
+      min-height: 15px;
+    }
+
+    .qty-row { display: flex; align-items: center; gap: 14px; }
+    .qty-btn {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      border: 1.5px solid #e2dcd4;
+      background: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      color: var(--navy);
+    }
+    .qty-val { font-size: 16px; font-weight: 700; min-width: 24px; text-align: center; }
+
+    .order-summary {
+      margin-top: 18px;
+      margin-bottom: 18px;
+      background: #fff;
+      border: 1.5px solid #e2dcd4;
+      border-radius: 14px;
+      padding: 16px 18px;
+    }
+    .order-summary-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--navy);
+      padding: 5px 0;
+    }
+    .order-summary-row.free { color: var(--green); font-weight: 700; }
+    .order-summary-row.total {
+      border-top: 1.5px dashed #e2dcd4;
+      margin-top: 8px;
+      padding-top: 10px;
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--pink-dark);
+    }
+
+    .submit-btn {
+      width: 100%;
+      margin-top: 10px;
+      background: var(--green);
+      color: #fff;
+      border: none;
+      padding: 17px;
+      border-radius: 50px;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: 0 10px 28px rgba(37,211,102,0.4);
+      transition: transform .2s, box-shadow .2s;
+    }
+    .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 14px 34px rgba(37,211,102,0.5); }
+    .submit-btn svg { width: 20px; height: 20px; fill: #fff; }
+    .form-error {
+      color: var(--pink-dark);
+      font-size: 12px;
+      font-weight: 600;
+      text-align: center;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--navy);
+      color: rgba(255,255,255,0.6);
+      text-align: center;
+      padding: 36px 24px;
+    }
+    footer .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+    }
+    footer .main-site-btn { margin-bottom: 16px; }
+    footer p { font-size: 11px; }
+
+    @media (max-width: 760px) {
+      header { padding: 0 16px; }
+      .logo-sub { display: none; }
+      .product-section { grid-template-columns: 1fr; padding: 28px 18px 8px; gap: 28px; }
+      .product-img-wrap img { height: 420px; }
+      .order-section { padding: 20px 18px 60px; }
+      .order-card { padding: 28px 22px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <!-- Meta Pixel Code -->
+ <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '899939093169077');
+  fbq('track', 'PageView');
+ </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=899939093169077&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+</head>
+<body>
+
+<div class="announcement-bar">
+  <div class="announce-scroll">
+    <span>✦</span> FREE SHIPPING ON ORDERS OVER <span id="freeShipThreshold1">4500</span> DA &nbsp;
+    <span>✦</span> توصيل مجاني للطلبات فوق <span id="freeShipThreshold2">4500</span> دج &nbsp;
+    <span>✦</span> HANDMADE IN ALGERIA · من الورشة مباشرة &nbsp;
+    <span>✦</span> FREE SHIPPING ON ORDERS OVER <span id="freeShipThreshold3">4500</span> DA &nbsp;
+    <span>✦</span> توصيل مجاني للطلبات فوق <span id="freeShipThreshold4">4500</span> دج &nbsp;
+    <span>✦</span> HANDMADE IN ALGERIA · من الورشة مباشرة &nbsp;
+  </div>
+</div>
+
+<header>
+  <div class="logo">
+    LUNARIS
+    <span class="logo-sub">home fashion · made in algeria</span>
+  </div>
+  <!-- TODO: replace with your new Cloudflare Pages domain once live --><a href="https://lunaris-algerie.netlify.app" target="_blank" class="main-site-btn">
+    ✦ Visit Full Store - تفضل بزيارة موقعنا
+  </a>
+</header>
+
+<section class="product-section">
+  <div>
+    <div class="product-img-wrap">
+      <span class="stock-flag" id="stockFlag">Loading...</span>
+      <img id="productImage" src="placeholder.jpg" alt="Lunaris Dress" onerror="this.style.display='none'" />
+    </div>
+    <div class="thumbnails" id="thumbnailContainer"></div>
+  </div>
+
+  <div class="product-info">
+    <div class="eyebrow">Lunaris · Limited Stock</div>
+    <h1 id="productName">Pinterest-Style Summer Dress</h1>
+    <div class="price-row">
+      <div class="price-now" id="priceNow">-- DA</div>
+    </div>
+
+    <div class="option-block">
+      <div class="option-label">Color</div>
+      <div class="swatches" id="colorSwatches">
+        <div class="swatch selected" data-color="Rose Pink" style="background:#C8547A;"></div>
+        <div class="swatch" data-color="Navy Blue" style="background:#1B2A4A;"></div>
+        <div class="swatch" data-color="Cream White" style="background:#FAF7F2;border-color:#ddd;"></div>
+        <div class="swatch" data-color="Gold" style="background:#C8A97A;"></div>
+      </div>
+    </div>
+
+    <div class="option-block">
+      <div class="option-label">Size</div>
+      <div class="size-pills" id="sizePills">
+        <span style="font-size: 13px; color: var(--muted);">Loading sizes...</span>
+      </div>
+    </div>
+
+    <div class="stock-note">Hurry — limited pieces left in stock</div>
+  </div>
+</section>
+
+<section class="order-section">
+  <div class="order-card">
+    <h2>Order Now - اطلب الآن</h2>
+    <p class="order-sub">Fill your details — we'll confirm with you on WhatsApp</p>
+
+    <form id="orderForm">
+      <div class="form-row">
+        <div class="form-field">
+          <label>Name - اسم</label>
+          <input type="text" id="firstName" required />
+        </div>
+        <div class="form-field">
+          <label>Last Name - لقب</label>
+          <input type="text" id="lastName" required />
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label>Phone Number</label>
+        <input type="tel" id="phone" placeholder="05/06/07 XX XX XX XX" required />
+      </div>
+
+      <div class="form-field">
+        <label>Wilaya</label>
+        <select id="wilaya" required>
+          <option value="">اختر ولايتك</option>
+          <option>Adrar</option><option>Chlef</option><option>Laghouat</option><option>Oum El Bouaghi</option>
+          <option>Batna</option><option>Béjaïa</option><option>Biskra</option><option>Béchar</option>
+          <option>Blida</option><option>Bouira</option><option>Tamanrasset</option><option>Tébessa</option>
+          <option>Tlemcen</option><option>Tiaret</option><option>Tizi Ouzou</option><option>Alger</option>
+          <option>Djelfa</option><option>Jijel</option><option>Sétif</option><option>Saïda</option>
+          <option>Skikda</option><option>Sidi Bel Abbès</option><option>Annaba</option><option>Guelma</option>
+          <option>Constantine</option><option>Médéa</option><option>Mostaganem</option><option>M'Sila</option>
+          <option>Mascara</option><option>Ouargla</option><option>Oran</option><option>El Bayadh</option>
+          <option>Illizi</option><option>Bordj Bou Arréridj</option><option>Boumerdès</option><option>El Tarf</option>
+          <option>Tindouf</option><option>Tissemsilt</option><option>El Oued</option><option>Khenchela</option>
+          <option>Souk Ahras</option><option>Tipaza</option><option>Mila</option><option>Aïn Defla</option>
+          <option>Naâma</option><option>Aïn Témouchent</option><option>Ghardaïa</option><option>Relizane</option>
+          <option>Timimoun</option><option>Bordj Badji Mokhtar</option><option>Ouled Djellal</option><option>Béni Abbès</option>
+          <option>In Salah</option><option>In Guezzam</option><option>Touggourt</option><option>Djanet</option>
+          <option>El M'Ghair</option><option>El Meniaa</option>
+        </select>
+      </div>
+
+      <div class="form-field">
+        <label>Delivery</label>
+        <div class="delivery-toggle">
+          <div class="delivery-opt selected" data-delivery="Home Delivery">🏠 Home -التوصيل إلى المنزل</div>
+          <div class="delivery-opt" data-delivery="Office / Stop Desk">🏢 Office-التسليم إلى المكتب</div>
+        </div>
+        <div class="delivery-cost-display" id="deliveryCostDisplay"></div>
+      </div>
+
+      <div class="form-field">
+        <label>Address / Commune/ عنوان المنزل</label>
+        <input type="text" id="address" placeholder="Your commune or office pickup point" required />
+      </div>
+
+      <div class="form-field">
+        <label>Quantity</label>
+        <div class="qty-row">
+          <button type="button" class="qty-btn" id="qtyMinus">−</button>
+          <span class="qty-val" id="qtyVal">1</span>
+          <button type="button" class="qty-btn" id="qtyPlus">+</button>
+        </div>
+      </div>
+
+      <div class="order-summary">
+        <div class="order-summary-row">
+          <span>Merchandise - سعر المنتج</span>
+          <span id="summaryItemsCost">0 DA</span>
+        </div>
+        <div class="order-summary-row" id="summaryDeliveryRow">
+          <span>Delivery - التوصيل</span>
+          <span id="summaryDeliveryCost">0 DA</span>
+        </div>
+        <div class="order-summary-row total">
+          <span>Total - المجموع</span>
+          <span id="summaryTotalCost">0 DA</span>
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">
+        <svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.96.57 3.79 1.55 5.35L2 22l4.94-1.63a9.86 9.86 0 0 0 5.1 1.4h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm5.78 14.07c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.79-4.18-4.93-4.37-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.42-.07.65.5.24.58.81 1.99.88 2.14.07.14.12.31.02.49-.1.18-.15.29-.29.45-.14.16-.29.36-.42.48-.14.13-.28.27-.12.55.16.28.71 1.18 1.53 1.91 1.05.94 1.94 1.23 2.21 1.37.28.14.44.12.6-.05.16-.18.69-.81.87-1.09.18-.28.36-.23.6-.14.25.1 1.56.74 1.83.87.27.14.44.2.51.31.07.12.07.66-.17 1.34z"/></svg>
+           يجب عليك الضغط هنا لتأكيد طلبك <br>   Order via WhatsApp 
+      </button>
+      <div class="form-error" id="formError">Please fill in all fields before sending - يرجى ملء جميع الحقول قبل الإرسال</div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">LUNARIS</div>
+  <!-- TODO: replace with your new Cloudflare Pages domain once live --><a href="https://lunaris-algerie.netlify.app" target="_blank" class="main-site-btn">✦ Visit Full Store - تفضل بزيارة موقعنا</a>
+  <p>© 2026 Lunaris · Made with love in Algeria 🇩🇿</p>
+</footer>
+
+<script src="product-data.js"></script>
+<script src="delivery-data.js"></script>
+<script src="landing2-data.js"></script>
+
+<script>
+  // ── CONFIGURATION ──
+  const WHATSAPP_NUMBER = "213779724156";
+  
+  // Product data now comes from landing2-data.js (LANDING2_PRODUCT) and
+  // delivery-data.js (DELIVERY_RATES) — both loaded via <script> tags
+  // before this block. No Google Sheet fetch anymore.
+
+  // Variables for states
+  let selectedColor = "Rose Pink"; // Defaults will update via logic below
+  let selectedSize  = "";
+  let selectedDelivery = "Home Delivery";
+  let qty = 1;
+  
+  let basePrice = 0;
+  let currentDeliveryCost = 0;
+  let wilayaRates = {}; // Will hold JSON mapping from sheet, keyed by normalized wilaya name
+  let freeDeliveryThreshold = 4500; // default, overridden by sheet if present
+  let rateMissing = false; // true if selected wilaya has no rate row in the sheet
+
+  // ── LOAD PRODUCT + DELIVERY DATA (local, synchronous — no network fetch) ──
+  function loadProductData() {
+    try {
+      const data = (typeof LANDING2_PRODUCT !== 'undefined') ? LANDING2_PRODUCT : {};
+
+      // 1. IMAGES (Handles 1 up to 6 images seamlessly)
+      if (data.images && data.images.length > 0) {
+        const mainImage = document.getElementById('productImage');
+        const thumbContainer = document.getElementById('thumbnailContainer');
+        mainImage.src = data.images[0];
+        mainImage.style.display = 'block';
+
+        if (data.images.length > 1) {
+            data.images.slice(0, 6).forEach((imgUrl, index) => {
+                const thumb = document.createElement('img');
+                thumb.src = imgUrl;
+                thumb.className = index === 0 ? 'thumb active' : 'thumb';
+
+                thumb.addEventListener('click', () => {
+                    mainImage.style.opacity = 0; // Fade effect
+                    setTimeout(() => {
+                        mainImage.src = imgUrl;
+                        mainImage.style.opacity = 1;
+                    }, 150);
+                    document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+                    thumb.classList.add('active');
+                });
+                thumbContainer.appendChild(thumb);
+            });
+        }
+      }
+
+      // 2. PRICE
+      if (data.price) {
+        basePrice = parseInt(data.price, 10);
+        document.getElementById('priceNow').textContent = `${basePrice.toLocaleString()} DA`;
+      }
+
+      // 2b. FREE DELIVERY THRESHOLD — shared site-wide setting (product-data.js)
+      const settings = (typeof SITE_SETTINGS !== 'undefined') ? SITE_SETTINGS : {};
+      if (settings.freeDeliveryThreshold) {
+        freeDeliveryThreshold = parseInt(settings.freeDeliveryThreshold, 10) || freeDeliveryThreshold;
+        ['freeShipThreshold1','freeShipThreshold2','freeShipThreshold3','freeShipThreshold4'].forEach(id => {
+          const el = document.getElementById(id);
+          if (el) el.textContent = freeDeliveryThreshold.toLocaleString();
+        });
+      }
+
+      updateOrderSummary();
+
+      // 3. SIZES (Ensures 'Standard' is always on the far left, and 'XL' on the far right)
+      if (data.sizes && data.sizes.length > 0) {
+        const sizeContainer = document.getElementById('sizePills');
+        sizeContainer.innerHTML = '';
+
+        const sizeSortOrder = { 'Standard': 1, 'S': 2, 'M': 3, 'L': 4, 'XL': 5 };
+        const sortedSizes = [...data.sizes].sort((a, b) => (sizeSortOrder[a] || 99) - (sizeSortOrder[b] || 99));
+
+        sortedSizes.forEach((size, index) => {
+            const pill = document.createElement('div');
+            pill.className = index === 0 ? 'size-pill selected' : 'size-pill';
+            pill.dataset.size = size;
+            pill.textContent = size;
+
+            pill.addEventListener('click', () => {
+                document.querySelectorAll('.size-pill').forEach(s => s.classList.remove('selected'));
+                pill.classList.add('selected');
+                selectedSize = pill.dataset.size;
+            });
+            sizeContainer.appendChild(pill);
+        });
+        selectedSize = sortedSizes[0]; // Set default selected
+      }
+
+      // 4. WILAYA RATES — shared site-wide table (delivery-data.js), already
+      // keyed by normalized wilaya name with {home, desk}, same shape this
+      // page expects — no transform needed.
+      if (typeof DELIVERY_RATES !== 'undefined') {
+        wilayaRates = DELIVERY_RATES;
+      } else {
+        console.error('[landing-page2] DELIVERY_RATES is missing — make sure delivery-data.js is included before this script.');
+      }
+
+      document.getElementById('stockFlag').textContent = data.stockText || 'In Stock';
+
+    } catch (error) {
+      console.error("Error loading local product data:", error);
+    }
+  }
+
+
+  // ── UPDATE DELIVERY COST UI ──
+  function updateDeliveryDisplay() {
+    const wilayaSelect = document.getElementById('wilaya').value;
+    const costDisplay = document.getElementById('deliveryCostDisplay');
+    const itemTotal = basePrice * qty;
+    const qualifiesFree = itemTotal >= freeDeliveryThreshold && freeDeliveryThreshold > 0;
+    const wilayaKey = normalizeWilaya(wilayaSelect);
+    const rateEntry = wilayaSelect ? wilayaRates[wilayaKey] : null;
+
+    if (wilayaSelect && rateEntry) {
+      const isHome = selectedDelivery === "Home Delivery";
+      const rate = isHome ? rateEntry.home : rateEntry.desk;
+      rateMissing = (rate === undefined || rate === null);
+      currentDeliveryCost = qualifiesFree ? 0 : (rate || 0);
+      if (rateMissing) {
+        costDisplay.textContent = `⚠ No rate set for this wilaya/option in the sheet`;
+      } else {
+        costDisplay.textContent = qualifiesFree
+          ? `Free Delivery ✦ توصيل مجاني`
+          : `+ ${currentDeliveryCost} DA Delivery`;
+      }
+    } else if (wilayaSelect && !rateEntry) {
+      rateMissing = true;
+      currentDeliveryCost = 0;
+      costDisplay.textContent = `⚠ No delivery rate set for ${wilayaSelect} yet`;
+    } else {
+      rateMissing = false;
+      currentDeliveryCost = 0;
+      costDisplay.textContent = '';
+    }
+    updateOrderSummary();
+  }
+
+  // ── UPDATE ORDER SUMMARY BOX (items + delivery = total) ──
+  function updateOrderSummary() {
+    const itemTotal = basePrice * qty;
+    const total = itemTotal + currentDeliveryCost;
+    const itemsEl = document.getElementById('summaryItemsCost');
+    const deliveryEl = document.getElementById('summaryDeliveryCost');
+    const deliveryRowEl = document.getElementById('summaryDeliveryRow');
+    const totalEl = document.getElementById('summaryTotalCost');
+    if (!itemsEl) return;
+
+    itemsEl.textContent = `${itemTotal.toLocaleString()} DA`;
+
+    const wilayaChosen = document.getElementById('wilaya').value;
+    deliveryRowEl.classList.remove('free');
+
+    if (!wilayaChosen) {
+      deliveryEl.textContent = 'Select wilaya';
+    } else if (rateMissing) {
+      deliveryEl.textContent = 'Rate not set';
+    } else if (currentDeliveryCost === 0 && itemTotal >= freeDeliveryThreshold && freeDeliveryThreshold > 0) {
+      deliveryEl.textContent = 'FREE';
+      deliveryRowEl.classList.add('free');
+    } else {
+      deliveryEl.textContent = `${currentDeliveryCost.toLocaleString()} DA`;
+    }
+
+    totalEl.textContent = `${total.toLocaleString()} DA`;
+  }
+
+
+  // ── INITIALIZE EVENTS ──
+  document.addEventListener('DOMContentLoaded', () => {
+    loadProductData();
+
+    // Color Swatches
+    document.querySelectorAll('.swatch').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.swatch').forEach(s => s.classList.remove('selected'));
+        el.classList.add('selected');
+        selectedColor = el.dataset.color;
+      });
+    });
+
+    // Delivery Options
+    document.querySelectorAll('.delivery-opt').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('.delivery-opt').forEach(s => s.classList.remove('selected'));
+        el.classList.add('selected');
+        selectedDelivery = el.dataset.delivery;
+        updateDeliveryDisplay();
+      });
+    });
+
+    // Wilaya Change
+    document.getElementById('wilaya').addEventListener('change', updateDeliveryDisplay);
+
+    // Quantity
+    document.getElementById('qtyMinus').addEventListener('click', () => {
+      if (qty > 1) { qty--; document.getElementById('qtyVal').textContent = qty; updateDeliveryDisplay(); }
+    });
+    document.getElementById('qtyPlus').addEventListener('click', () => {
+      qty++; document.getElementById('qtyVal').textContent = qty; updateDeliveryDisplay();
+    });
+
+    // Form Submit
+    document.getElementById('orderForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const firstName = document.getElementById('firstName').value.trim();
+      const lastName  = document.getElementById('lastName').value.trim();
+      const phone     = document.getElementById('phone').value.trim();
+      const wilaya    = document.getElementById('wilaya').value;
+      const address   = document.getElementById('address').value.trim();
+      const errorBox  = document.getElementById('formError');
+
+      if (!firstName || !lastName || !phone || !wilaya || !address) {
+        errorBox.style.display = 'block';
+        errorBox.textContent = 'Please fill in all fields before sending - يرجى ملء جميع الحقول قبل الإرسال';
+        return;
+      }
+      if (rateMissing) {
+        errorBox.style.display = 'block';
+        errorBox.textContent = 'Delivery rate not set for this wilaya yet — contact us directly. لم يتم تحديد سعر التوصيل لهذه الولاية بعد';
+        return;
+      }
+      errorBox.style.display = 'none';
+
+      const productName = document.getElementById('productName').textContent.trim();
+      const itemTotal = basePrice * qty;
+      const finalTotal = itemTotal + currentDeliveryCost;
+
+      const message =
+`New Order — Lunaris ✦
+Product: ${productName}
+Color: ${selectedColor}
+Size: ${selectedSize}
+Qty: ${qty}
+
+Name: ${firstName} ${lastName}
+Phone: ${phone}
+Wilaya: ${wilaya}
+Delivery: ${selectedDelivery}
+Address: ${address}
+
+Item(s) Cost: ${itemTotal} DA
+Delivery Cost: ${currentDeliveryCost} DA
+*Total: ${finalTotal} DA*`;
+
+      if (typeof fbq === 'function') {
+        fbq('track', 'Purchase', {
+          value: finalTotal,
+          currency: 'DZD'
+        });
+      }
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+
+      if (typeof gtag === 'function') {
+        gtag('event', 'generate_lead', { product: productName });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Checkout — Lunaris</title>
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJV56RD5RZ"></script>
+ <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JJV56RD5RZ');
+ </script>
+
+ <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "x9m1yighan");
+ </script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; background: #cf8fbf; color: #1a1a1a; min-height: 100vh; }
+  a { text-decoration: none; color: inherit; }
+  img { display: block; max-width: 100%; }
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 60px; background: #f5f5f3;
+    border-bottom: 1px solid #e0e0e0; position: sticky; top: 0; z-index: 100;
+  }
+  .nav-left { display: flex; gap: 32px; }
+  .nav-left a { font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #555; transition: color .2s; }
+  .nav-left a:hover { color: #1a1a1a; }
+  .nav-logo {
+    font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700;
+    letter-spacing: 2px; color: #1a1a1a; text-transform: uppercase;
+    position: absolute; left: 50%; transform: translateX(-50%);
+  }
+  .nav-right { display: flex; gap: 24px; align-items: center; }
+  .nav-back {
+    font-size: 12px; letter-spacing: 1px; text-transform: uppercase;
+    color: #555; display: flex; align-items: center; gap: 6px;
+    transition: color .2s; cursor: pointer;
+  }
+  .nav-back:hover { color: #1a1a1a; }
+  .nav-back::before { content: '←'; }
+  .checkout-hero {
+    overflow: hidden; padding: 0 0 0 60px;
+    border-bottom: 1px solid #e0e0e0; background: #f5f5f3;
+    display: flex; align-items: flex-end;
+  }
+  .checkout-big-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(60px, 16vw, 220px); font-weight: 700; color: #1a1a1a;
+    line-height: 0.85; letter-spacing: -4px; white-space: nowrap; padding-bottom: 12px;
+  }
+  .checkout-step {
+    writing-mode: vertical-rl; text-orientation: mixed;
+    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+    color: #aaa; padding-bottom: 20px; margin-right: 24px; flex-shrink: 0;
+  }
+  .checkout-wrap {
+    display: grid; grid-template-columns: 1fr 380px; gap: 0;
+    max-width: 1300px; margin: 0 auto; padding: 0 60px 80px; align-items: start;
+  }
+  .form-col { padding: 48px 60px 48px 0; border-right: 1px solid #e0e0e0; }
+  .form-section { margin-bottom: 48px; }
+  .form-section-title {
+    font-family: 'Playfair Display', serif; font-size: 26px; font-weight: 700;
+    color: #1a1a1a; letter-spacing: 0.5px; margin-bottom: 28px;
+    padding-bottom: 16px; border-bottom: 1px solid #e0e0e0;
+  }
+  .form-grid { display: grid; gap: 0; }
+  .form-grid-2 { grid-template-columns: 1fr 1fr; }
+  .form-grid-1 { grid-template-columns: 1fr; }
+  .form-field { display: flex; flex-direction: column; }
+  .form-field label {
+    font-size: 16px; letter-spacing: 2px; text-transform: uppercase;
+    color: #0f0d0d; margin-bottom: 8px; font-weight: 500;
+  }
+  .form-field input, .form-field select {
+    border: none; border-bottom: 1px solid #ccc; background: transparent;
+    padding: 10px 0; font-size: 14px; font-family: 'Inter', sans-serif;
+    color: #1a1a1a; outline: none; transition: border-color .2s;
+    width: 100%; margin-bottom: 28px; border-radius: 0;
+  }
+  .form-field input:focus, .form-field select:focus { border-bottom-color: #1a1a1a; }
+  .form-field input::placeholder { color: #ccc; font-size: 13px; }
+  .shipping-options { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 4px; }
+  .shipping-opt {
+    border: 1px solid #e0e0e0; border-radius: 4px; padding: 16px 18px;
+    cursor: pointer; transition: border-color .2s, background .2s;
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+  .shipping-opt:hover { border-color: #1a1a1a; }
+  .shipping-opt.selected { border-color: #1a1a1a; background: #fff; }
+  .shipping-opt input[type="radio"] { margin-top: 3px; accent-color: #1a1a1a; flex-shrink: 0; }
+  .shipping-opt-label { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #1a1a1a; margin-bottom: 4px; }
+  .shipping-opt-sub { font-size: 11px; color: #aaa; }
+  .form-errors {
+    display: none; background: #fff5f7; border: 1px solid #f5c0cc;
+    border-radius: 4px; padding: 14px 18px; margin-bottom: 24px;
+  }
+  .form-errors p { font-size: 12px; color: #C8547A; margin-bottom: 4px; }
+  .form-errors p:last-child { margin: 0; }
+  .btn-place-order {
+    width: 100%; background: #1a1a1a; color: #fff; border: none;
+    padding: 18px; font-size: 13px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; cursor: pointer; transition: background .2s;
+    margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .btn-place-order:hover { background: #333; }
+  .btn-place-order svg { width: 18px; height: 18px; fill: #fff; }
+  .order-note { font-size: 11px; color: #0e0808; text-align: center; margin-top: 12px; line-height: 1.6; }
+  .summary-col { padding: 48px 0 48px 40px; }
+  .summary-title { font-size: 9px; letter-spacing: 3px; text-transform: uppercase; color: #0f0909; margin-bottom: 28px; font-weight: 500; }
+  .order-items { margin-bottom: 32px; }
+  .order-item { display: flex; gap: 16px; padding: 16px 0; border-bottom: 1px solid #0f0d0d; }
+  .order-item:first-child { border-top: 1px solid #110b0b; }
+  .order-item-img { width: 80px; height: 100px; background: #0c0b0a; border-radius: 4px; overflow: hidden; flex-shrink: 0; }
+  .order-item-img img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .order-item-info { flex: 1; }
+  .order-item-name { font-size: 12px; font-weight: 600; letter-spacing: 0.5px; text-transform: uppercase; color: #1a1a1a; margin-bottom: 6px; }
+  .order-item-meta { font-size: 11px; color: #131010; line-height: 1.8; }
+  .order-item-meta span { display: block; }
+  .order-item-price { font-size: 13px; font-weight: 600; color: #1a1a1a; white-space: nowrap; padding-top: 2px; }
+  .order-item-remove { font-size: 10px; color: #110a0a; text-decoration: underline; cursor: pointer; background: none; border: none; padding: 0; margin-top: 8px; display: block; transition: color .2s; }
+  .order-item-remove:hover { color: #C8547A; }
+  .totals-block { border-top: 1px solid #080707; padding-top: 20px; }
+  .totals-row { display: flex; justify-content: space-between; font-size: 12px; color: #130b0b; margin-bottom: 10px; }
+  .totals-row.total { font-size: 14px; font-weight: 700; color: #1a1a1a; margin-top: 16px; padding-top: 16px; border-top: 1px solid #0a0909; }
+  .totals-label { letter-spacing: 0.5px; text-transform: uppercase; font-size: 20px; }
+  .empty-cart-msg { text-align: center; padding: 60px 20px; color: #110d0d; }
+  .empty-cart-msg h3 { font-family: 'Playfair Display', serif; font-size: 22px; color: #0a0909; margin-bottom: 10px; }
+  .empty-cart-msg a { display: inline-block; margin-top: 20px; border-bottom: 1px solid #1a1a1a; font-size: 12px; letter-spacing: 1px; text-transform: uppercase; color: #1a1a1a; }
+  .success-screen { display: none; text-align: center; padding: 80px 40px; }
+  .success-screen h2 { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 700; color: #1a1a1a; margin-bottom: 12px; }
+  .success-screen p { font-size: 20px; color: #050101; line-height: 1.7; }
+  .success-check { font-size: 56px; margin-bottom: 24px; }
+  @media (max-width: 1024px) {
+    nav { padding: 16px 28px; }
+    .checkout-wrap { grid-template-columns: 1fr; padding: 0 28px 60px; }
+    .form-col { padding: 36px 0; border-right: none; border-bottom: 1px solid #080707; }
+    .summary-col { padding: 36px 0; }
+    .checkout-hero { padding-left: 28px; }
+  }
+  @media (max-width: 640px) {
+    nav { padding: 14px 20px; }
+    .nav-left { display: none; }
+    .checkout-wrap { padding: 0 20px 48px; }
+    .checkout-hero { padding-left: 20px; }
+    .form-grid-2 { grid-template-columns: 1fr; }
+    .shipping-options { grid-template-columns: 1fr; }
+  }
+</style>
+
+  <!-- Meta Pixel Code -->
+ <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '899939093169077');
+  fbq('track', 'PageView');
+ </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=899939093169077&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+   
+</head>
+<body>
+
+<nav>
+  <div class="nav-left">
+    <a href="index.html">Home</a>
+    <a href="dresses.html">Dresses</a>
+    <a href="pouches.html">Pouches</a>
+  </div>
+  <div class="nav-logo">Lunaris</div>
+  <div class="nav-right">
+    <span class="nav-back" onclick="history.back()">Back</span>
+  </div>
+</nav>
+
+<div class="checkout-hero">
+  <span class="checkout-step">ORDERING / 01</span>
+  <h1 class="checkout-big-title">CHECKOUT</h1>
+</div>
+
+<div class="checkout-wrap">
+
+  <div class="form-col">
+    <div id="formScreen">
+
+      <div class="form-section">
+        <h2 class="form-section-title">Personal Information - يرجى ملء معلوماتك الشخصية</h2>
+        <div class="form-grid form-grid-2">
+          <div class="form-field">
+            <label>First Name — الاسم</label>
+            <input type="text" id="fname" placeholder="Amina" />
+          </div>
+          <div class="form-field">
+            <label>Last Name — اللقب</label>
+            <input type="text" id="lname" placeholder="Benali" />
+          </div>
+        </div>
+        <div class="form-grid form-grid-1">
+          <div class="form-field">
+            <label>Phone Number — رقم الهاتف</label>
+            <input type="tel" id="phone" placeholder="07XX XXX XXX" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="form-section-title">Shipping Information</h2>
+        <div class="form-grid form-grid-1">
+          <div class="form-field">
+            <label>Wilaya — الولاية</label>
+            <select id="wilayaSelect" onchange="renderSummary()">
+              <option value="">Loading wilayas from database...</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-grid form-grid-1">
+          <div class="form-field">
+            <label>Town / City — البلدية أو المدينة</label>
+            <input type="text" id="town" placeholder="Ex: Bab Ezzouar" />
+          </div>
+        </div>
+        <div class="form-grid form-grid-1">
+          <div class="form-field">
+            <label>Street Address (optional) — العنوان من فضلك</label>
+            <input type="text" id="address" placeholder="Street, building, apartment..." />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <h2 class="form-section-title">Shipping Method - ! طريقة الشحن</h2>
+        <div class="shipping-options">
+          <label class="shipping-opt selected" id="opt-standard">
+            <input type="radio" name="shipping" value="standard" checked onchange="selectShipping(this); renderSummary();" />
+            <div>
+              <div class="shipping-opt-label">Home Delivery - توصيل للمنزل</div>
+              <div class="shipping-opt-sub">Standard to your door</div>
+            </div>
+          </label>
+          <label class="shipping-opt" id="opt-pickup">
+            <input type="radio" name="shipping" value="pickup" onchange="selectShipping(this); renderSummary();" />
+            <div>
+              <div class="shipping-opt-label">Pickup / Desk - توصيل للمكتب</div>
+              <div class="shipping-opt-sub">Pickup from local office</div>
+            </div>
+          </label>
+        </div>
+      </div>
+
+      <div class="form-errors" id="formErrors"></div>
+
+      <button class="btn-place-order" onclick="placeOrder()">
+        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/>
+        </svg>
+        Place Order via WhatsApp
+      </button>
+      <p class="order-note">
+        Clicking will open WhatsApp with your order details pre-filled.<br>
+        سيتم تحويلك إلى واتساب لإتمام طلبك مباشرة
+      </p>
+
+    </div>
+
+    <div class="success-screen" id="successScreen">
+      <div class="success-check">✓</div>
+      <h2>Order Sent! - تم إرسال طلبك </h2>
+      <p>Your order has been sent via WhatsApp.<br>We'll confirm and arrange delivery shortly.<br><br>
+      <span style="direction:rtl;display:block;color:#C8547A;">تم إرسال طلبك عبر واتساب. سنتواصل معك قريباً لتأكيد التوصيل</span></p>
+      <a href="index.html" style="display:inline-block;margin-top:32px;border-bottom:1px solid #1a1a1a;font-size:12px;letter-spacing:2px;text-transform:uppercase;">Continue Shopping</a>
+    </div>
+  </div>
+
+  <div class="summary-col">
+    <p class="summary-title">Order Summary — ملخص الطلب</p>
+    <div class="order-items" id="orderItems"></div>
+    <div class="totals-block" id="totalsBlock"></div>
+  </div>
+
+</div>
+
+<script>
+const WHATSAPP_NUMBER = "213779724156";
+let cart = JSON.parse(localStorage.getItem('lunaris_cart') || '[]');
+
+function getItemPrice(item) {
+  const raw = (item && item.price !== undefined && item.price !== null) ? String(item.price) : '0';
+  const num = parseInt(raw.replace(/[^0-9]/g, ''), 10);
+  return isNaN(num) ? 0 : num;
+}
+
+function renderSummary() {
+  const container = document.getElementById('orderItems');
+  const totals = document.getElementById('totalsBlock');
+
+  if (cart.length === 0) {
+    container.innerHTML = `
+      <div class="empty-cart-msg">
+        <h3>Your cart is empty</h3>
+        <p>سلتك فارغة</p>
+        <a href="index.html">Continue Shopping</a>
+      </div>`;
+    totals.innerHTML = '';
+    return;
+  }
+
+  container.innerHTML = cart.map((item, i) => {
+    const price = getItemPrice(item);
+    const qty = item.qty || 1;
+    const lineTotal = (price * qty).toLocaleString('fr-DZ');
+    const name = item.name || 'Item';
+    return `
+      <div class="order-item">
+        <div class="order-item-img">
+          <img src="${item.image || ''}" alt="${name}" onerror="this.parentElement.style.background='#e8d5cc'" />
+        </div>
+        <div class="order-item-info">
+          <div class="order-item-name">${name}</div>
+          <div class="order-item-meta">
+            <span>QTY: ${qty}</span>
+            ${item.size ? '<span>SIZE: ' + item.size + '</span>' : ''}
+            ${item.color ? '<span>COLOR: ' + item.color + '</span>' : ''}
+          </div>
+          <button class="order-item-remove" onclick="removeItem(${i})">Remove - إزالة من السلة</button>
+        </div>
+        <div class="order-item-price">${lineTotal} DA</div>
+      </div>`;
+  }).join('');
+
+  const subtotal = cart.reduce((s, i) => s + getItemPrice(i) * (i.qty || 1), 0);
+  
+  let shippingCost = 0;
+  let threshold = 999999;
+  const wilayaSel = document.getElementById('wilayaSelect');
+  
+  // 🚨 See which radio button is clicked right now
+  const shippingMethod = document.querySelector('input[name="shipping"]:checked')?.value || 'standard';
+  
+  if (wilayaSel && wilayaSel.selectedIndex > 0) {
+    const selectedOpt = wilayaSel.options[wilayaSel.selectedIndex];
+    
+    // Grab both prices from the HTML dropdown
+    const priceHome = parseFloat(selectedOpt.getAttribute('data-price-home')) || 0;
+    const priceDesk = parseFloat(selectedOpt.getAttribute('data-price-desk')) || 0;
+    
+    // Assign the correct price based on the selected radio button
+    shippingCost = shippingMethod === 'standard' ? priceHome : priceDesk;
+    threshold = parseFloat(selectedOpt.getAttribute('data-threshold')) || 999999;
+  }
+
+  // Free shipping check
+  if (subtotal >= threshold) {
+    shippingCost = 0;
+  }
+
+  const total = subtotal + shippingCost;
+  
+  let shippingText = (!wilayaSel || wilayaSel.selectedIndex <= 0) 
+                     ? 'Select Wilaya...' 
+                     : (shippingCost === 0 ? 'Free' : shippingCost.toLocaleString('fr-DZ') + ' DA');
+
+  totals.innerHTML = `
+    <div class="totals-row">
+      <span class="totals-label">Subtotal - المبلغ الإجمالي</span>
+      <span>${subtotal.toLocaleString('fr-DZ')} DA</span>
+    </div>
+    <div class="totals-row">
+      <span class="totals-label">Shipping - التوصيل</span>
+      <span>${shippingText}</span>
+    </div>
+    <div class="totals-row total">
+      <span class="totals-label">Total Amount - المبلغ النهائي</span>
+      <span>${total.toLocaleString('fr-DZ')} DA</span>
+    </div>`;
+}
+
+function removeItem(index) {
+  cart.splice(index, 1);
+  localStorage.setItem('lunaris_cart', JSON.stringify(cart));
+  renderSummary();
+}
+
+function selectShipping(radio) {
+  document.querySelectorAll('.shipping-opt').forEach(o => o.classList.remove('selected'));
+  radio.closest('.shipping-opt').classList.add('selected');
+}
+
+function placeOrder() {
+  const fname   = document.getElementById('fname').value.trim();
+  const lname   = document.getElementById('lname').value.trim();
+  const phone   = document.getElementById('phone').value.trim();
+  const wilaya  = document.getElementById('wilayaSelect').value;
+  const town    = document.getElementById('town').value.trim();
+  const address = document.getElementById('address').value.trim();
+  const shippingMethod = document.querySelector('input[name="shipping"]:checked')?.value || 'standard';
+  const errBox  = document.getElementById('formErrors');
+
+  const issues = [];
+  if (!fname)                    issues.push("⚠ First name is required - الاسم الأول مطلوب");
+  if (!lname)                    issues.push("⚠ Last name is required - الاسم الأخير مطلوب");
+  if (!phone || phone.length < 9) issues.push("⚠ Valid phone number required - مطلوب رقم هاتف صالح");
+  if (!wilaya)                   issues.push("⚠ Please select your wilaya - الرجاء اختيار ولايتك");
+  if (!town)                     issues.push("⚠ Town name is required - اسم المدينة مطلوب");
+  if (cart.length === 0)         issues.push("⚠ Your cart is empty - سلة التسوق الخاصة بك فارغة");
+
+  if (issues.length > 0) {
+    errBox.innerHTML = issues.map(e => `<p>${e}</p>`).join('');
+    errBox.style.display = 'block';
+    errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  errBox.style.display = 'none';
+
+  const subtotal = cart.reduce((s, i) => s + getItemPrice(i) * (i.qty || 1), 0);
+  
+  const wilayaSel = document.getElementById('wilayaSelect');
+  const selectedOpt = wilayaSel.options[wilayaSel.selectedIndex];
+  
+  const priceHome = parseFloat(selectedOpt.getAttribute('data-price-home')) || 0;
+  const priceDesk = parseFloat(selectedOpt.getAttribute('data-price-desk')) || 0;
+  let shippingCost = shippingMethod === 'standard' ? priceHome : priceDesk;
+  
+  let threshold = parseFloat(selectedOpt.getAttribute('data-threshold')) || 999999;
+  
+  if (subtotal >= threshold) {
+      shippingCost = 0;
+  }
+  const total = subtotal + shippingCost;
+
+  const orderLines = cart.map(item =>
+    `• ${item.name || 'Item'}${item.size ? ' | Size: ' + item.size : ''}${item.color ? ' | Color: ' + item.color : ''} | Qty: ${item.qty || 1} | ${item.price || (getItemPrice(item) + ' DA')}`
+  ).join('\n');
+
+  const message =
+`🛍 NEW ORDER — Lunaris
+━━━━━━━━━━━━━━━━━━━━━
+👤 ${fname} ${lname}
+📞 ${phone}
+📍 ${wilaya}
+🏘 ${town}${address ? '\n🏠 ' + address : ''}
+🚚 ${shippingMethod === 'standard' ? 'Home Delivery' : 'Pickup from Desk'}
+━━━━━━━━━━━━━━━━━━━━━
+ITEMS:
+${orderLines}
+━━━━━━━━━━━━━━━━━━━━━
+Subtotal: ${subtotal.toLocaleString('fr-DZ')} DA
+Shipping: ${shippingCost === 0 ? 'Free' : shippingCost + ' DA'}
+TOTAL: ${total.toLocaleString('fr-DZ')} DA
+━━━━━━━━━━━━━━━━━━━━━`;
+
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+  // Open WhatsApp FIRST and synchronously (no setTimeout). Doing it inside a
+  // delayed callback made popup blockers eat the window on some browsers —
+  // and the cart was already being wiped before that call ever ran, so a
+  // blocked popup meant a lost order with no way to recover it.
+  const waWindow = window.open(url, '_blank');
+
+  if (!waWindow) {
+    // Popup blocked — leave the cart intact and give the customer a manual link.
+    const errBox = document.getElementById('formErrors');
+    errBox.innerHTML = `<p>⚠ Your browser blocked the WhatsApp popup. <a href="${url}" target="_blank" style="color:#C8547A;text-decoration:underline;">Tap here to send your order</a> — your cart is safe.</p>`;
+    errBox.style.display = 'block';
+    errBox.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
+  // WhatsApp actually opened — the order has left the building, safe to empty the cart now.
+  localStorage.removeItem('lunaris_cart');
+  document.getElementById('formScreen').style.display = 'none';
+  document.getElementById('successScreen').style.display = 'block';
+
+ // Generate a unique ID for the Lead event
+const leadEventId = 'lead_' + Date.now() + '_' + Math.random().toString(36).slice(2);
+
+// 1. Fire the browser Pixel Lead event
+if (typeof fbq === 'function') {
+  fbq('track', 'Lead', {
+    value: total,
+    currency: 'DZD'
+  }, { eventID: leadEventId });
+}
+
+// 2. Fire the server-side CAPI Lead event
+fetch('/api/capi-lead', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    value: total,
+    currency: 'DZD',
+    fname: fname,
+    lname: lname,
+    phone: phone,
+    wilaya: wilaya,
+    eventId: leadEventId,
+    eventSourceUrl: window.location.href,
+    // Extract browser cookies directly using your meta-helpers.js functions
+    fbp: metaGetCookie('_fbp') || undefined,
+    fbc: metaGetCookie('_fbc') || undefined
+  })
+}).catch(err => console.error('CAPI Lead failed:', err));
+
+ if (typeof gtag === 'function') {
+  gtag('event', 'purchase', {
+    transaction_id: 'LUNARIS_' + Date.now(),
+    value: subtotal,
+    currency: 'DZD',
+    items: cart.map(item => ({
+      item_id: item.id,
+      item_name: item.name,
+      item_category: item.category || 'Product',
+      price: getItemPrice(item),
+      quantity: item.qty || 1
+    }))
+  });
+ }
+}
+
+renderSummary();
+</script>
+
+<script src="product-data.js"></script>
+<script src="delivery-data.js"></script>
+<script src="inventory.js"></script>
+
+</body>
+</html>

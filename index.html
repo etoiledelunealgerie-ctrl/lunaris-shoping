@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lunaris – Home Fashion Made in Algeria</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="cart.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJV56RD5RZ"></script>
+ <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JJV56RD5RZ');
+ </script>
+
+ <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "x9m1yighan");
+ </script>
+<style>
+  html { scroll-behavior: smooth; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: #333; background: #fff; font-size: 14px; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  ul { list-style: none; }
+  :root {
+    --pink:        #C8547A;
+    --pink-light:  #F8EEF2;
+    --pink-mid:    #E8C4D2;
+    --pink-dark:   #A03060;
+    --text:        #333;
+    --text-light:  #777;
+    --border:      #eee;
+    --bg-strip:    #FDF5F8;
+    --gold:        #C8A97A;
+    --sale-red:    #C8547A;
+  }
+  .announcement-bar {
+    background: var(--pink-light);
+    text-align: center;
+    padding: 8px 20px;
+    font-size: 20px;
+    color: var(--pink);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+  .announcement-bar span { margin: 0 4px; }
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 48px;
+    border-bottom: 1px solid var(--border);
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--pink);
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .logo span { font-size: 10px; display: block; letter-spacing: 3px; color: var(--text-light); font-family: 'Inter', sans-serif; font-weight: 400; text-transform: uppercase; }
+  .logo-wrap { line-height: 1.1; }
+  nav { display: flex; gap: 28px; }
+  nav a { font-size: 13px; color: var(--text); font-weight: 500; transition: color .2s; }
+  nav a:hover { color: var(--pink); }
+  .header-icons { display: flex; gap: 18px; align-items: center; }
+  .header-icons svg { width: 20px; height: 20px; stroke: var(--text); fill: none; cursor: pointer; transition: stroke .2s; }
+  .header-icons svg:hover { stroke: var(--pink); }
+  .hero {
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #FDF5F8 60%, #F5E0EA 100%);
+    padding: 60px 80px 0;
+    min-height: 480px;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-text { flex: 1; z-index: 2; }
+  .hero-eyebrow { font-size: 25px; letter-spacing: 3px; text-transform: uppercase; color: var(--pink); font-weight: 600; margin-bottom: 16px; }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    line-height: 1.15;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+  }
+  .hero-title .accent { color: var(--pink); font-style: italic; display: block; }
+  .hero-sub { color: var(--text-light); font-size: 20px; line-height: 1.7; margin: 16px 0 36px; max-width: 340px; }
+  .hero-btns { display: flex; gap: 16px; align-items: center; }
+  .btn-primary {
+    background: var(--pink); color: #fff;
+    padding: 13px 28px; border-radius: 4px;
+    font-size: 13px; font-weight: 600; letter-spacing: 0.5px;
+    transition: background .2s;
+    border: none; cursor: pointer;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--pink-dark); }
+  .btn-ghost {
+    color: var(--text); font-size: 13px; font-weight: 500;
+    display: flex; align-items: center; gap: 6px;
+    transition: color .2s;
+  }
+  .btn-ghost:hover { color: var(--pink); }
+  .btn-ghost::after { content: '→'; }
+  .hero-image-wrap { flex: 1; display: flex; justify-content: center; align-items: flex-end; position: relative; min-height: 420px; }
+  .hero-dots { display: flex; gap: 6px; margin-top: 32px; }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--pink-mid); }
+  .dot.active { background: var(--pink); }
+  .trust-strip {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 22px 28px;
+    border-right: 1px solid var(--border);
+  }
+  .trust-item:last-child { border-right: none; }
+  .trust-icon { width: 36px; height: 36px; stroke: var(--pink); fill: none; flex-shrink: 0; }
+  .trust-label { font-weight: 600; font-size: 13px; color: var(--text); }
+  .trust-sub { font-size: 20px; color: var(--text-light); margin-top: 2px; }
+  .section-title {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    color: var(--text);
+    letter-spacing: 0.5px;
+  }
+  .section-ornament {
+    display: flex; align-items: center; justify-content: center; margin: 6px 0 32px;
+  }
+  .section-ornament svg { width: 20px; height: 20px; fill: var(--pink); }
+  .categories { padding: 56px 80px; background: #fff; }
+  .cat-grid { display: flex; justify-content: center; gap: 32px; flex-wrap: wrap; }
+  .cat-item { text-align: center; cursor: pointer; }
+  a.cat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+  }
+  .cat-circle {
+    width: 200px; height: 200px; border-radius: 50%;
+    overflow: hidden; margin: 0 auto 12px;
+    border: 3px solid var(--pink-light);
+    transition: border-color .2s;
+    background: linear-gradient(135deg, var(--pink-light), var(--pink-mid));
+    display: flex; align-items: center; justify-content: center;
+    color: var(--pink); font-size: 15px; font-weight: 500;
+  }
+  .cat-circle img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .cat-item:hover .cat-circle { border-color: var(--pink); }
+  .cat-name { font-weight: 600; font-size: 16px; color: var(--text); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .cat-link { font-size: 17px; color: var(--pink); display: flex; align-items: center; justify-content: center; gap: 4px; }
+  .cat-link::after { content: '→'; }
+  @keyframes float {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-10px); }
+    100% { transform: translateY(0px); }
+  }
+  .cat-item:nth-child(1) .cat-circle { animation: float 3s ease-in-out infinite; }
+  .cat-item:nth-child(2) .cat-circle { animation: float 3s ease-in-out infinite 0.4s; }
+  .cat-item:nth-child(3) .cat-circle { animation: float 3s ease-in-out infinite 0.8s; }
+  .bestsellers { padding: 56px 80px; background: var(--bg-strip); }
+  #bestsellers {
+    background: #F2E8E1;
+    padding: 56px 80px 40px;
+    overflow: hidden;
+  }
+  #bestsellers .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(72px, 12vw, 160px);
+    font-style: italic;
+    font-weight: 700;
+    color: #1B2A4A;
+    line-height: 0.88;
+    letter-spacing: -2px;
+    text-align: left;
+    margin: 0 0 12px 0;
+    text-shadow: none;
+    animation: none;
+    width: auto;
+    white-space: normal;
+    position: static;
+  }
+  #bestsellers .section-title .arabic-sub {
+    display: block;
+    font-family: 'Inter', sans-serif;
+    font-size: clamp(29px, 3.9vw, 49px);
+    font-style: normal;
+    font-weight: 400;
+    color: #C8547A;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 16px;
+    direction: rtl;
+    text-shadow: none;
+    opacity: 0.85;
+  }
+  #bestsellers .section-ornament { display: none; }
+  .bs-eyebrow {
+    display: inline-block;
+    border: 1.5px solid #1B2A4A;
+    color: #1B2A4A;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 7px 22px;
+    border-radius: 50px;
+    margin-bottom: 24px;
+  }
+  .slider-track-wrap {
+    overflow: hidden;
+    position: relative;
+    margin-top: 32px;
+  }
+  .slider-track {
+    display: flex;
+    gap: 24px;
+    animation: slideLeft 18s linear infinite;
+    width: max-content;
+  }
+  .slider-track:hover { animation-play-state: paused; }
+  @keyframes slideLeft {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .bs-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 280px;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: box-shadow .3s, transform .3s;
+    border: 2px solid #E8D5CC;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .bs-card:hover {
+    box-shadow: 0 12px 36px rgba(27,42,74,0.15);
+    transform: translateY(-4px);
+  }
+  .bs-card img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .bs-card-info { padding: 16px 18px 20px; background: #fff; }
+  .bs-card-tag { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #C8547A; font-weight: 600; margin-bottom: 6px; }
+  .bs-card-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; color: #1B2A4A; margin-bottom: 8px; line-height: 1.2; }
+  .bs-card-price { font-size: 15px; font-weight: 600; color: #1B2A4A; }
+  .bs-card-stars { font-size: 12px; color: #F5A623; margin-top: 4px; }
+  .products-row {
+    display: grid;
+    grid-template-columns: repeat(2, 340px);
+    gap: 24px;
+    justify-content: center;
+  }
+  .product-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    transition: box-shadow .25s;
+    cursor: pointer;
+  }
+  .product-card:hover { box-shadow: 0 8px 28px rgba(200,84,122,.12); }
+  .product-img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+  }
+  .sale-badge {
+    position: absolute; top: 10px; left: 10px;
+    background: var(--sale-red); color: #fff;
+    font-size: 10px; font-weight: 700;
+    padding: 3px 8px; border-radius: 3px;
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .product-info { padding: 14px 14px 18px; }
+  .product-name { font-size: 12px; color: var(--text); margin-bottom: 6px; font-weight: 500; }
+  .product-price-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
+  .price-current { font-weight: 700; color: var(--text); font-size: 14px; }
+  .price-old { text-decoration: line-through; color: var(--text-light); font-size: 12px; }
+  .stars { display: flex; gap: 2px; margin-bottom: 2px; }
+  .reviews { font-size: 10px; color: var(--text-light); margin-left: 4px; }
+  .star-row { display: flex; align-items: center; }
+  .carousel-wrap { position: relative; }
+  .carousel-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    width: 36px; height: 36px; border-radius: 50%;
+    background: #fff; border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer; z-index: 2; box-shadow: 0 2px 8px rgba(0,0,0,.08);
+  }
+  .carousel-arrow.left { left: -18px; }
+  .carousel-arrow.right { right: -18px; }
+  .carousel-arrow svg { width: 14px; height: 14px; stroke: var(--text); fill: none; }
+  /*
+  .promos { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding: 40px 80px; }
+  .promo-card { border-radius: 10px; padding: 36px 32px; display: flex; align-items: center; justify-content: space-between; overflow: hidden; position: relative; }
+  .promo-card.pink { background: linear-gradient(120deg, #FAE8F0 0%, #F5D0E3 100%); }
+  .promo-card.light { background: linear-gradient(120deg, #FFF5F0 0%, #FFE8E0 100%); }
+  .promo-eyebrow { font-size: 10px; text-transform: uppercase; letter-spacing: 2px; color: var(--pink); font-weight: 600; margin-bottom: 8px; }
+  .promo-title { font-family: 'Playfair Display', serif; font-size: 22px; color: var(--text); line-height: 1.3; margin-bottom: 16px; }
+  .promo-title strong { color: var(--pink); display: block; }
+  .promo-image-ph { width: 130px; height: 120px; background: linear-gradient(135deg, var(--pink-mid), transparent); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 10px; color: var(--pink); text-align: center; padding: 8px; }
+  */
+  .instagram { padding: 40px 80px; text-align: center; }
+  .instagram .handle { font-size: 12px; color: var(--text-light); margin-bottom: 20px; }
+  .values-strip {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 40px 80px;
+    border-top: 1px solid var(--border);
+  }
+  .value-item { text-align: center; padding: 20px; }
+  .value-icon { width: 36px; height: 36px; margin: 0 auto 10px; stroke: var(--pink); fill: none; }
+  .value-label { font-weight: 700; font-size: 13px; color: var(--text); margin-bottom: 4px; }
+  .value-sub { font-size: 35px; color: var(--text-light); }
+  footer {
+    background: #1a1a1a;
+    color: #aaa;
+    padding: 48px 80px 24px;
+  }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; margin-bottom: 40px; }
+  .footer-brand p { font-size: 12px; line-height: 1.8; color: #888; max-width: 240px; }
+  .footer-logo { display: flex; align-items: center; gap: 6px; font-family: 'Playfair Display', serif; font-size: 20px; color: #fff; font-weight: 700; margin-bottom: 14px; }
+  .footer-logo span { font-size: 18px; display: block; letter-spacing: 3px; color: #888; font-family: 'Inter', sans-serif; font-weight: 400; text-transform: uppercase; }
+  .footer-col h4 { color: #fff; font-size: 13px; font-weight: 600; margin-bottom: 16px; letter-spacing: 0.5px; }
+  .footer-col ul { display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul li a { font-size: 12px; color: #888; transition: color .2s; }
+  .footer-col ul li a:hover { color: var(--pink); }
+  .footer-bottom { border-top: 1px solid #333; padding-top: 20px; display: flex; justify-content: space-between; align-items: center; }
+  .footer-bottom p { font-size: 11px; color: #666; }
+  @media (max-width: 1024px) {
+    header { padding: 14px 24px; }
+    .hero { padding: 40px 24px 0; }
+    .categories, .bestsellers, .instagram, .values-strip, footer { padding-left: 24px; padding-right: 24px; }
+    .products-row { grid-template-columns: repeat(2, 1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 768px) {
+    nav { display: none; }
+    .hero { flex-direction: column; padding: 32px 20px 0; }
+    .hero-title { font-size: 34px; }
+    .hero-image-wrap { min-height: 240px; }
+    .trust-strip { grid-template-columns: 1fr; }
+    .trust-item { border-right: none; border-bottom: 1px solid var(--border); }
+    .cat-grid { gap: 16px; }
+    .cat-circle { width: 110px; height: 110px; }
+    .products-row { grid-template-columns: repeat(1, 1fr); }
+    .instagram-grid { grid-template-columns: repeat(3, 1fr); }
+    .values-strip { grid-template-columns: 1fr; }
+    .footer-grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+  <!-- Meta Pixel Code -->
+ <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '899939093169077');
+  fbq('track', 'PageView');
+ </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=899939093169077&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+   
+</head>
+<body>
+
+<div class="announcement-bar">
+  🚚 <span>FREE SHIPPING on all orders over <span id="announceThreshold">4500</span> da &nbsp;|&nbsp; توصيل مجاني للطلبات فوق <span id="announceThresholdAr">4500</span> دج</span>
+</div>
+
+<header>
+  <div class="logo">
+    <img src="logo.webp" alt="Étoile de Lune" style="height: 110px; width: auto;" />
+    <div class="logo-wrap">
+      LUNARIS
+      <span>home fashion · made in great algeria</span>
+    </div>
+  </div>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#bestsellers">Shop</a>
+    <a href="#pouches">Pouches</a>
+    <a href="#dresses">Dresses</a>
+    <a href="#">About Us</a>
+    <a href="#">Contact</a>
+  </nav>
+  <div class="header-icons">
+    <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <button class="cart-nav-btn" onclick="window.location.href='checkout.html'">
+      <svg viewBox="0 0 24 24">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      <span id="cartBadge"></span>
+    </button>
+  </div>
+</header>
+<section class="top-banner-image" style="width: 100%; overflow: hidden; background: #E6DCD8;">
+  <img src="GIF.gif" alt="Lunaris Promotional Banner" style="width: 100%; height: auto; display: block; object-fit: cover; max-height: 80vh;" />
+</section>
+
+<section class="hero">
+  <div class="hero-text">
+    <p class="hero-eyebrow"> البيع بالجملة و التجزئة</p>
+    <h1 class="hero-title">
+      <span class="accent">Pinterest Style</span>
+      <span class="accent">directly from our sewing workshop <br> من الورشة مباشرة</span>
+    </h1>
+    <p class="hero-sub">
+      إكتشفي حقائب وفساتين عالية الجودة تجعلكِ أنتِ وفتياتكِ تتألقن كل يوم
+    </p>
+    <div class="hero-btns">
+      <a href="#categories" class="btn-primary">SHOP NOW</a>
+      
+    </div>
+    <div class="hero-dots">
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+  </div>
+  <div class="hero-image-wrap">
+    <img src="hero3.png" alt="Hero" style="max-height:420px;object-fit:contain;" />
+  </div>
+</section>
+
+<div class="trust-strip">
+  <div class="trust-item">
+    <svg class="trust-icon" viewBox="0 0 24 24">
+      <rect x="1" y="3" width="15" height="13"/>
+      <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/>
+      <circle cx="5.5" cy="18.5" r="2.5"/>
+      <circle cx="18.5" cy="18.5" r="2.5"/>
+    </svg>
+    <div>
+      <div class="trust-label">Free Shipping</div>
+      <div class="trust-sub">On all orders over <span id="trustThreshold">3500</span> da &nbsp;|&nbsp; توصيل مجاني للطلبات فوق <span id="trustThresholdAr">3500</span> دج</div>
+    </div>
+  </div>
+  <div class="trust-item">
+    <svg class="trust-icon" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+    <div>
+      <div class="trust-label">High Quality</div>
+      <div class="trust-sub">Premium quality products</div>
+    </div>
+  </div>
+</div>
+
+<section class="categories" id="categories">
+  <h2 class="section-title">SHOP BY CATEGORY</h2>
+  <div class="section-ornament">
+    <img src="logo.webp" alt="Étoile de Lune" style="height: 60px; width: auto;" />
+  </div>
+  <div class="cat-grid">
+
+    <a href="pouches.html" class="cat-item">
+      <div class="cat-circle">
+        <img src="pouch-bags.jpg" alt="Pouch Bags" loading="lazy" decoding="async" />
+      </div>
+      <div class="cat-name">Pouch Bags / Les Pochettes</div>
+      <div class="cat-link">Shop Now</div>
+    </a>
+
+    <a href="dresses.html" class="cat-item">
+      <div class="cat-circle">
+        <img src="robeblanc.jpg" alt="Women's Dresses" loading="lazy" decoding="async" />
+      </div>
+      <div class="cat-name">Women's Dresses - ملابس النساء </div>
+      <div class="cat-link">Shop Now</div>
+    </a>
+
+    <a href="#" class="cat-item">
+      <div class="cat-circle"></div>
+      <div class="cat-name">Girl's Dresses</div>
+      <div class="cat-link">Coming Soon &nbsp; قريبا بإذن الله</div>
+    </a>
+
+  </div>
+</section>
+
+<section class="bestsellers" id="bestsellers">
+  <p class="bs-eyebrow">Étoile de Lune</p>
+  <h2 class="section-title">
+    Best<br>Sellers
+    <span class="arabic-sub">المنتوجات الأكثر طلبا</span>
+  </h2>
+  <div class="slider-track-wrap">
+    
+    <div class="slider-track" id="bestsellersTrack">
+      
+      <div style="padding: 40px; font-family: 'Playfair Display', serif; font-size: 20px; color: #1B2A4A; text-align: center; width: 100%;">
+        Loading best sellers... جاري التحميل
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!--
+<section class="promos">
+  <div class="promo-card pink">
+    <div>
+      <p class="promo-eyebrow">Special Offer</p>
+      <h3 class="promo-title">Up To 30% Off<br><strong>On Selected Products</strong></h3>
+      <a href="#" class="btn-primary" style="display:inline-block;">SHOP NOW</a>
+    </div>
+    <div class="promo-image-ph">[ Promo Photo ]</div>
+  </div>
+  <div class="promo-card light">
+    <div>
+      <p class="promo-eyebrow">New Arrivals</p>
+      <h3 class="promo-title">Fresh &amp; Trendy<br><strong>New Collection</strong></h3>
+      <a href="#" class="btn-primary" style="display:inline-block;">DISCOVER NOW</a>
+    </div>
+    <div class="promo-image-ph">[ Promo Photo ]</div>
+  </div>
+</section>
+-->
+
+<section class="instagram">
+  <h2 class="section-title">FOLLOW US ON INSTAGRAM</h2>
+  <p class="handle">@Etoile_de_lune_algerie</p>
+  <behold-widget feed-id="VJB7RxsJqY9W2BPApjpz"></behold-widget>
+  <script>
+    (() => {
+      const d=document,s=d.createElement("script");s.type="module";
+      s.src="https://w.behold.so/widget.js";d.head.append(s);
+    })();
+  </script>
+</section>
+
+<div class="values-strip">
+  <div class="value-item">
+    <svg class="value-icon" viewBox="0 0 24 24">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+    </svg>
+    <div class="value-label">Made With Love</div>
+    <div class="value-sub">We manufacture and sew our own dresses here in great Algeria<br>نقوم بتصنيع وخياطة منتجاتنا هنا في الجزائر</div>
+  </div>
+  <div class="value-item">
+    <svg class="value-icon" viewBox="0 0 24 24">
+      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+    </svg>
+    <div class="value-label">Customer Support</div>
+    <div class="value-sub">We're here to help you</div>
+    <div class="value-sub"> لطلبات الجملة أو الإستفسار إتصلو على هذا الرقم <br> 07 79 72 41 56 <br> 07 81 01 88 68 </div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="footer-logo">
+        <img src="logo.webp" alt="Étoile de Lune" style="height: 68px; width: auto;" loading="lazy" decoding="async" />
+        <div class="logo-wrap">
+          LUNARIS
+          <span>home fashion · great algeria</span>
+        </div>
+      </div>
+      <p>Handmade pouches &amp; dresses crafted with care in Algeria. Quality you can feel, style you can see.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#bestsellers">Shop</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="#pouches">Pouch Bags</a></li>
+        <li><a href="#dresses">Women's Dresses</a></li>
+        <li><a href="#">Girl's Dresses</a></li>
+        <li><a href="#">Accessories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Customer Service</h4>
+      <ul>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Returns &amp; Exchanges</a></li>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Service</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Étoile de Lune. All rights reserved.</p>
+    <p>Made with ❤️ in great Algeria</p>
+  </div>
+</footer>
+
+<script src="cart.js"></script>
+<script src="product-data.js"></script>
+<script src="delivery-data.js"></script>
+<script src="inventory.js"></script>
+</body>
+</html>

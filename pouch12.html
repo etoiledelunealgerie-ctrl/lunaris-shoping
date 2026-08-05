@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Small Pouches — Lunaris</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="cart.css">
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJV56RD5RZ"></script>
+  <script>
+   window.dataLayer = window.dataLayer || [];
+   function gtag(){dataLayer.push(arguments);}
+   gtag('js', new Date());
+
+   gtag('config', 'G-JJV56RD5RZ');
+  </script>
+
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "x9m1yighan"); // <-- Swap this placeholder when you have your Clarity ID
+  </script>
+
+ <!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '899939093169077');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=899939093169077&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
+ 
+</head>
+<body>
+<div id="multiColorPouchContainer" data-page-url="pouch12.html" style="display:none;"></div>
+
+<script>
+/* ═══════════════════════════════════════════
+   CONFIGURATION SKELETON
+════════════════════════════════════════════ */
+let PRODUCT = {
+  name_en:   "Small Pouch Bundle",
+  name_ar:   "مجموعة البوشيت",
+  category:  "Pouch Bags",
+  back_page: "pouches.html",
+  back_label:"Back to Pouches",
+
+  // Bundle prices (Keep these hardcoded here!)
+  price_1:   250,   // DA — single pouch
+  price_5:   1000,  // DA — 5-pouch bundle total
+  price_10:  1600,  // DA — 10-pouch bundle total
+
+  colors: [], // This will be magically filled by the Google Sheet!
+
+  desc_en: "Handcrafted in our Algerian workshop. Each pouch is made from proper fabric — the perfect elegant gift or everyday essential.",
+  desc_ar:  "مصنوع في ورشتنا الجزائرية. كل بوشيت من قماش عالي الجودة — هدية أنيقة أو ضرورة يومية.",
+};
+</script>
+
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Inter', sans-serif; color: #1a1a1a; min-height: 100vh; overflow-x: hidden; position: relative; background: #FAF7F2; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 16px 48px;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+  }
+  .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #C8547A; }
+  .back-btn { color: #555; font-size: 13px; font-weight: 500; display: flex; align-items: center; gap: 8px; transition: color .2s; text-decoration: none; }
+  .back-btn:hover { color: #C8547A; }
+  .back-btn::before { content: '←'; font-size: 16px; }
+
+  .bundle-section { background: #fff; border-bottom: 2px solid #f0e0e8; padding: 32px 60px 28px; }
+  .bundle-inner { max-width: 1100px; margin: 0 auto; }
+  .bundle-heading { text-align: center; margin-bottom: 24px; }
+  .bundle-heading .en { display: block; font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+  .bundle-heading .ar { display: block; font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #1a1a1a; direction: rtl; }
+  .bundle-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+
+  .bundle-card {
+    border: 2px solid #eee; border-radius: 16px; padding: 28px 20px 22px;
+    text-align: center; background: #FAF7F2; position: relative;
+    pointer-events: none; user-select: none;
+  }
+  .bundle-card.best { border-color: #C8547A; background: #fff5f8; }
+  .bundle-card.active-deal { border-color: #C8547A; background: #fff5f8; box-shadow: 0 6px 24px rgba(200,84,122,0.18); }
+
+  .bundle-badge {
+    position: absolute; top: -13px; left: 50%; transform: translateX(-50%);
+    background: #C8547A; color: #fff; font-size: 10px; font-weight: 700;
+    letter-spacing: 1.5px; text-transform: uppercase; padding: 4px 14px;
+    border-radius: 50px; white-space: nowrap;
+  }
+  .bundle-qty-en { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: #1a1a1a; margin-bottom: 4px; }
+  .bundle-qty-ar { font-family: 'Playfair Display', serif; font-size: 19px; font-weight: 700; color: #1a1a1a; direction: rtl; margin-bottom: 14px; }
+  .bundle-price-tag { font-size: 30px; font-weight: 700; color: #C8547A; font-family: 'Playfair Display', serif; margin-bottom: 4px; }
+  .bundle-per { font-size: 11px; color: #aaa; letter-spacing: 0.4px; }
+
+  .product-body {
+    max-width: 1200px; margin: 0 auto; padding: 56px 60px 80px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start;
+  }
+
+  .gallery-col { position: sticky; top: 90px; }
+  .carousel-wrap {
+    width: 100%; aspect-ratio: 3/4; border-radius: 20px; overflow: hidden;
+    background: #f0e0e8; border: 1px solid #eee; margin-bottom: 16px; position: relative;
+  }
+  .carousel-track { display: flex; height: 100%; transition: transform 0.4s cubic-bezier(.4,0,.2,1); will-change: transform; }
+  .carousel-slide { min-width: 100%; height: 100%; flex-shrink: 0; }
+  .carousel-slide img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .carousel-arrow {
+    position: absolute; top: 50%; transform: translateY(-50%); width: 36px; height: 36px;
+    background: rgba(255,255,255,0.85); border: none; border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; z-index: 10;
+    transition: background .2s, opacity .2s; opacity: 0.7; box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+  }
+  .carousel-arrow:hover { opacity: 1; background: #fff; }
+  .carousel-arrow.prev { left: 10px; }
+  .carousel-arrow.next { right: 10px; }
+  .carousel-arrow svg { width: 16px; height: 16px; stroke: #C8547A; fill: none; stroke-width: 2.5; }
+  .carousel-arrow.hidden { display: none; }
+  .carousel-dots { position: absolute; bottom: 10px; left: 0; right: 0; display: flex; justify-content: center; gap: 6px; }
+  .carousel-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.55); cursor: pointer; transition: background .2s, transform .2s; border: none; }
+  .carousel-dot.active { background: #C8547A; transform: scale(1.2); }
+
+  .color-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+  .color-thumb-wrap { display: flex; flex-direction: column; gap: 6px; }
+  .color-thumb {
+    aspect-ratio: 1/1; border-radius: 12px; overflow: hidden; cursor: pointer;
+    border: 2px solid transparent; transition: border-color .2s, transform .2s;
+    background: #f0e0e8; position: relative;
+  }
+  .color-thumb:hover { transform: translateY(-2px); border-color: rgba(200,84,122,0.4); }
+  .color-thumb.active { border-color: #C8547A; }
+  .color-thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+  .color-thumb-label {
+    position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.45);
+    color: #fff; font-size: 9px; font-weight: 600; text-align: center; padding: 3px 2px;
+    letter-spacing: 0.3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .thumb-qty-row { display: flex; align-items: center; justify-content: center; gap: 0; height: 28px; }
+  .thumb-qty-btn {
+    width: 26px; height: 26px; border: 1.5px solid #e0c8d2; background: #fff; color: #C8547A;
+    font-size: 16px; font-weight: 700; border-radius: 50%; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; line-height: 1; transition: background .15s, border-color .15s; flex-shrink: 0;
+  }
+  .thumb-qty-btn:hover { background: #C8547A; color: #fff; border-color: #C8547A; }
+  .thumb-qty-count { min-width: 24px; text-align: center; font-size: 13px; font-weight: 600; color: #1a1a1a; }
+
+  .info-col { padding-top: 8px; }
+  .product-tag { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #C8547A; font-weight: 600; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .product-tag::before { content: ''; display: block; width: 24px; height: 1px; background: #C8547A; }
+  .product-title { font-family: 'Playfair Display', serif; font-size: 44px; font-weight: 700; font-style: italic; color: #1a1a1a; line-height: 1.05; margin-bottom: 6px; }
+  .product-title-ar { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 400; color: #999; direction: rtl; margin-bottom: 28px; }
+  .divider { width: 100%; height: 1px; background: #eee; margin: 24px 0; }
+
+  .price-block { margin-bottom: 28px; }
+  .price-active-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #aaa; margin-bottom: 6px; font-weight: 500; }
+  .price-active { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 700; color: #C8547A; transition: color .3s; }
+  .price-active-note { font-size: 12px; color: #aaa; margin-top: 4px; }
+  .deal-badge {
+    display: inline-block; background: #C8547A; color: #fff; font-size: 11px; font-weight: 700;
+    letter-spacing: 1px; padding: 3px 10px; border-radius: 50px; margin-top: 6px; opacity: 0; transition: opacity .3s;
+  }
+  .deal-badge.show { opacity: 1; }
+
+  .cart-summary-box { background: #fff5f8; border: 1px solid #f0c4d4; border-radius: 12px; padding: 14px 18px; margin-bottom: 24px; display: none; }
+  .cart-summary-box.show { display: block; }
+  .cart-summary-title { font-size: 12px; font-weight: 700; color: #C8547A; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+  .cart-summary-items { list-style: none; }
+  .cart-summary-items li { font-size: 13px; color: #555; padding: 4px 0; border-bottom: 1px solid #f0e0e8; display: flex; justify-content: space-between; align-items: center; }
+  .cart-summary-items li:last-child { border-bottom: none; }
+  .cart-total-row { margin-top: 10px; padding-top: 8px; border-top: 2px solid #f0c4d4; display: flex; justify-content: space-between; align-items: center; }
+  .cart-total-label { font-size: 12px; font-weight: 700; color: #1a1a1a; }
+  .cart-total-amount { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #C8547A; }
+
+  .cta-row { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+  .btn-add {
+    flex: 1; min-width: 180px; background: #C8547A; color: #fff; border: none; border-radius: 50px;
+    padding: 16px 28px; font-size: 15px; font-weight: 600; cursor: pointer; transition: background .2s, transform .2s;
+    display: flex; align-items: center; justify-content: center; gap: 10px; font-family: 'Inter', sans-serif;
+  }
+  .btn-add:hover { background: #A03060; transform: translateY(-2px); }
+  .btn-add svg { width: 18px; height: 18px; stroke: #fff; fill: none; flex-shrink: 0; }
+  .btn-add:disabled { background: #ccc; cursor: not-allowed; transform: none; }
+
+  .btn-checkout-link {
+    width: 100%; background: transparent; border: 1.5px solid #C8547A; color: #C8547A;
+    border-radius: 50px; padding: 14px 28px; font-size: 15px; font-weight: 600; cursor: pointer;
+    transition: all .2s; text-align: center; margin-top: 12px; font-family: 'Inter', sans-serif; display: block;
+  }
+  .btn-checkout-link:hover { background: #C8547A; color: #fff; }
+  .cart-notice { margin-top: 14px; font-size: 14px; color: #C8547A; text-align: center; min-height: 18px; font-weight: 500; }
+  .details-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+  .detail-pill { background: #f5f0f2; border: 1px solid #eee; border-radius: 50px; padding: 8px 16px; font-size: 11px; color: #666; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
+  .detail-pill svg { width: 13px; height: 13px; stroke: #C8547A; fill: none; }
+  .product-desc { font-size: 15px; color: #666; line-height: 1.8; margin-bottom: 10px; }
+  .product-desc-ar { font-size: 15px; color: #999; line-height: 1.8; direction: rtl; }
+
+  @media (max-width: 1024px) {
+    .product-body { grid-template-columns: 1fr; padding: 40px 28px 60px; gap: 40px; }
+    .gallery-col { position: static; }
+    nav { padding: 14px 24px; }
+    .bundle-section { padding: 28px 24px 24px; }
+  }
+  @media (max-width: 640px) {
+    .bundle-cards { grid-template-columns: 1fr; }
+    .product-title { font-size: 34px; }
+    .cta-row { flex-direction: column; }
+    .color-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+
+<nav>
+  <a class="nav-logo" href="index.html">LUNARIS</a>
+  <a class="back-btn" id="backBtn" href="pouches.html">Back to Pouches</a>
+  <button class="cart-nav-btn" onclick="window.location.href='checkout.html'">
+    <svg viewBox="0 0 24 24">
+      <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <path d="M16 10a4 4 0 0 1-8 0"/>
+    </svg>
+    <span id="cartBadge"></span>
+  </button>
+</nav>
+
+<div class="bundle-section">
+  <div class="bundle-inner">
+    <div class="bundle-heading">
+      <span class="en">Bundle Deals — Automatically Applied</span>
+      <span class="ar">العروض تُطبق تلقائياً عند اختيار الكمية</span>
+    </div>
+    <div class="bundle-cards">
+      <div class="bundle-card" id="bcard-1">
+        <div class="bundle-qty-en">1 Pouch</div><div class="bundle-qty-ar">بوشيت واحد</div>
+        <div class="bundle-price-tag" id="bprice-1"></div><div class="bundle-per">per piece — للقطعة</div>
+      </div>
+      <div class="bundle-card" id="bcard-5">
+        <div class="bundle-qty-en">5 Pouches</div><div class="bundle-qty-ar">5 بوشيتات</div>
+        <div class="bundle-price-tag" id="bprice-5"></div><div class="bundle-per">for the set — للمجموعة</div>
+      </div>
+      <div class="bundle-card best" id="bcard-10">
+        <div class="bundle-badge">Best Value — الأفضل</div>
+        <div class="bundle-qty-en">10 Pouches</div><div class="bundle-qty-ar">10 بوشيتات</div>
+        <div class="bundle-price-tag" id="bprice-10"></div><div class="bundle-per">for the set — للمجموعة</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="product-body">
+  <div class="gallery-col">
+    <div class="carousel-wrap" id="carouselWrap">
+      <div class="carousel-track" id="carouselTrack"></div>
+      <button class="carousel-arrow prev" id="carouselPrev"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+      <button class="carousel-arrow next" id="carouselNext"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></button>
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+    <div class="color-grid" id="colorGrid"></div>
+  </div>
+
+  <div class="info-col">
+    <p class="product-tag" id="pTag"></p>
+    <h1 class="product-title" id="pTitle"></h1>
+    <p class="product-title-ar" id="pTitleAr"></p>
+
+    <div class="price-block">
+      <div class="price-active-label">Total — المجموع</div>
+      <div class="price-active" id="priceDisplay">0 DA</div>
+      <div class="price-active-note" id="priceNote">Add pouches below to start</div>
+      <span class="deal-badge" id="dealBadge"></span>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="cart-summary-box" id="cartSummaryBox">
+      <div class="cart-summary-title">Your Selection — اختيارك</div>
+      <ul class="cart-summary-items" id="cartSummaryList"></ul>
+      <div class="cart-total-row">
+        <span class="cart-total-label">Total — المجموع</span>
+        <span class="cart-total-amount" id="summaryTotal">0 DA</span>
+      </div>
+    </div>
+
+    <p class="product-desc" id="pDesc"></p>
+    <p class="product-desc-ar" id="pDescAr"></p>
+
+    <div class="cta-row">
+      <button class="btn-add" id="addBtn">
+        <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span id="addBtnText"> Add to Cart — أضف للسلة</span>
+      </button>
+    </div>
+    <button class="btn-checkout-link" onclick="window.location.href='checkout.html'">Checkout — الدفع</button>
+    <p class="cart-notice" id="cartMsg"></p>
+
+    <div class="details-row">
+      <div class="detail-pill"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Handmade in Algeria</div>
+      <div class="detail-pill"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Premium Fabric</div>
+      <div class="detail-pill"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Free Delivery +<span id="trustThreshold">3500</span> DA</div>
+      <div class="detail-pill"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3"/></svg>Easy Returns</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── State
+let colorQtys = [];
+let selectedColorIdx = 0;   
+let carouselIdx      = 0;   
+
+function getImgs(color) {
+  return Array.isArray(color.img) ? color.img : [color.img];
+}
+
+// ─────────────────────────────────────────
+// THIS FUNCTION RUNS ONLY AFTER THE GOOGLE SHEET LOADS
+// ─────────────────────────────────────────
+function renderPouchPage() {
+  document.getElementById('pTag').textContent     = PRODUCT.category;
+  document.getElementById('pTitle').textContent   = PRODUCT.name_en;
+  document.getElementById('pTitleAr').textContent = PRODUCT.name_ar;
+  document.getElementById('pDesc').textContent    = PRODUCT.desc_en;
+  document.getElementById('pDescAr').textContent  = PRODUCT.desc_ar;
+  document.getElementById('bprice-1').textContent  = PRODUCT.price_1 + ' DA';
+  document.getElementById('bprice-5').textContent  = PRODUCT.price_5 + ' DA';
+  document.getElementById('bprice-10').textContent = PRODUCT.price_10 + ' DA';
+
+  colorQtys = new Array(PRODUCT.colors.length).fill(0);
+
+  const colorGrid = document.getElementById('colorGrid');
+  colorGrid.innerHTML = ''; 
+
+  if(PRODUCT.colors.length === 0) {
+      colorGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; color: #777;">Loading colors from database...</p>';
+      return;
+  }
+
+  PRODUCT.colors.forEach((c, i) => {
+    const wrap = document.createElement('div');
+    wrap.className = 'color-thumb-wrap';
+
+    const thumb = document.createElement('div');
+    thumb.className = 'color-thumb' + (i === 0 ? ' active' : '');
+    thumb.id = 'thumb-' + i;
+    const swatchImg = c.thumb || (Array.isArray(c.img) ? c.img[0] : c.img);
+    thumb.innerHTML = `
+      <img src="${swatchImg}" alt="${c.name_en}" loading="lazy" decoding="async"
+        onerror="this.parentElement.style.background='#f0e0e8'; this.style.display='none'" />
+      <span class="color-thumb-label">${c.name_en}</span>
+    `;
+    thumb.onclick = () => pickColor(i);
+
+    const qtyRow = document.createElement('div');
+    qtyRow.className = 'thumb-qty-row';
+
+    const minusBtn = document.createElement('button');
+    minusBtn.className = 'thumb-qty-btn';
+    minusBtn.id = 'minus-' + i;
+    minusBtn.textContent = '−';
+    minusBtn.addEventListener('click', (e) => { e.stopPropagation(); changeColorQty(i, -1); });
+
+    const countSpan = document.createElement('span');
+    countSpan.className = 'thumb-qty-count';
+    countSpan.id = 'count-' + i;
+    countSpan.textContent = '0';
+
+    const plusBtn = document.createElement('button');
+    plusBtn.className = 'thumb-qty-btn';
+    plusBtn.id = 'plus-' + i;
+    plusBtn.textContent = '+';
+    plusBtn.addEventListener('click', (e) => { e.stopPropagation(); changeColorQty(i, 1); });
+
+    qtyRow.appendChild(minusBtn);
+    qtyRow.appendChild(countSpan);
+    qtyRow.appendChild(plusBtn);
+
+    wrap.appendChild(thumb);
+    wrap.appendChild(qtyRow);
+    colorGrid.appendChild(wrap);
+  });
+
+  pickColor(0);
+  refreshPriceDisplay();
+}
+
+function buildCarousel(colorIdx) {
+  const c    = PRODUCT.colors[colorIdx];
+  const imgs = getImgs(c);
+  const track = document.getElementById('carouselTrack');
+  const dots  = document.getElementById('carouselDots');
+
+  track.innerHTML = '';
+  dots.innerHTML  = '';
+
+  imgs.forEach((src, i) => {
+    const slide = document.createElement('div');
+    slide.className = 'carousel-slide';
+    slide.innerHTML = `<img src="${src}" alt="${c.name_en} — view ${i+1}"
+      ${i === 0 ? 'loading="eager"' : 'loading="lazy"'} decoding="async"
+      onerror="this.parentElement.style.background='#f0e0e8'; this.style.display='none'" />`;
+    track.appendChild(slide);
+
+    const dot = document.createElement('button');
+    dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('aria-label', `View ${i+1}`);
+    dot.onclick = () => goToSlide(i);
+    dots.appendChild(dot);
+  });
+
+  carouselIdx = 0;
+  updateCarouselUI(imgs.length);
+}
+
+function updateCarouselUI(total) {
+  const track = document.getElementById('carouselTrack');
+  const dots  = document.querySelectorAll('.carousel-dot');
+  const prev  = document.getElementById('carouselPrev');
+  const next  = document.getElementById('carouselNext');
+
+  track.style.transform = `translateX(-${carouselIdx * 100}%)`;
+  dots.forEach((d, i) => d.classList.toggle('active', i === carouselIdx));
+
+  prev.classList.toggle('hidden', carouselIdx === 0);
+  next.classList.toggle('hidden', carouselIdx >= total - 1);
+}
+
+function carouselMove(dir) {
+  const imgs = getImgs(PRODUCT.colors[selectedColorIdx]);
+  carouselIdx = Math.max(0, Math.min(imgs.length - 1, carouselIdx + dir));
+  updateCarouselUI(imgs.length);
+}
+
+function goToSlide(i) {
+  const imgs = getImgs(PRODUCT.colors[selectedColorIdx]);
+  carouselIdx = i;
+  updateCarouselUI(imgs.length);
+}
+
+let touchStartX = 0;
+document.getElementById('carouselWrap').addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].clientX;
+}, { passive: true });
+document.getElementById('carouselWrap').addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 40) carouselMove(dx < 0 ? 1 : -1);
+});
+
+function pickColor(i) {
+  selectedColorIdx = i;
+  document.querySelectorAll('.color-thumb').forEach((t, idx) => {
+    t.classList.toggle('active', idx === i);
+  });
+  buildCarousel(i);
+}
+
+function changeColorQty(i, delta) {
+  colorQtys[i] = Math.max(0, colorQtys[i] + delta);
+  document.getElementById('count-' + i).textContent = colorQtys[i];
+  if (delta === 1) pickColor(i);
+  refreshPriceDisplay();
+  refreshCartSummary();
+}
+
+function calcPrice(total) {
+  if (total >= 10) {
+    const sets10   = Math.floor(total / 10);
+    const rem      = total % 10;
+    return sets10 * PRODUCT.price_10 + calcPrice(rem);
+  }
+  if (total >= 5) {
+    return PRODUCT.price_5 + calcPrice(total - 5);
+  }
+  return total * PRODUCT.price_1;
+}
+
+function totalQty() { return colorQtys.reduce((a, b) => a + b, 0); }
+
+function refreshPriceDisplay() {
+  const total = totalQty();
+  const price = calcPrice(total);
+
+  document.getElementById('priceDisplay').textContent = price + ' DA';
+
+  let note = 'Select a color and press + to add';
+  let deal = '';
+
+  if (total > 0) {
+    if (total >= 10) {
+      deal = '🎉 10-pouch deal applied!';
+      note = `${total} pouch${total>1?'es':''} — best value deal`;
+    } else if (total >= 5) {
+      deal = '✨ 5-pouch deal applied!';
+      note = `${total} pouch${total>1?'es':''} — bundle deal`;
+    } else {
+      note = `${total} pouch${total>1?'es':''} × ${PRODUCT.price_1} DA`;
+    }
+  }
+
+  document.getElementById('priceNote').textContent = note;
+
+  const badge = document.getElementById('dealBadge');
+  badge.textContent = deal;
+  badge.classList.toggle('show', deal !== '');
+
+  [1, 5, 10].forEach(n => {
+    const card = document.getElementById('bcard-' + n);
+    card.classList.remove('active-deal');
+  });
+  if (total >= 10)     document.getElementById('bcard-10').classList.add('active-deal');
+  else if (total >= 5) document.getElementById('bcard-5').classList.add('active-deal');
+  else if (total >= 1) document.getElementById('bcard-1').classList.add('active-deal');
+
+  const addBtnText = document.getElementById('addBtnText');
+  addBtnText.textContent = total > 0
+    ? `إضافة ${total} بوشيت${total>1?'':''} — ${price} دج`
+    : 'يجب عليك إضافة المنتج إلى السلة أولاً';
+  document.getElementById('addBtn').disabled = total === 0;
+}
+
+function refreshCartSummary() {
+  const box  = document.getElementById('cartSummaryBox');
+  const list = document.getElementById('cartSummaryList');
+  const items = PRODUCT.colors
+    .map((c, i) => ({ ...c, qty: colorQtys[i] }))
+    .filter(c => c.qty > 0);
+
+  if (items.length === 0) { box.classList.remove('show'); return; }
+  box.classList.add('show');
+
+  list.innerHTML = items.map(c =>
+    `<li>
+      <span>${c.name_en} <span style="color:#999">${c.name_ar}</span></span>
+      <span style="font-weight:600">× ${c.qty}</span>
+    </li>`
+  ).join('');
+
+  const total = totalQty();
+  document.getElementById('summaryTotal').textContent = calcPrice(total) + ' DA';
+}
+
+function addAllToCart() {
+  const total = totalQty();
+  if (total === 0) {
+    document.getElementById('cartMsg').textContent = '⚠ Press + on a color to add pouches first';
+    return;
+  }
+
+   cart = JSON.parse(localStorage.getItem('lunaris_cart') || '[]');
+
+  PRODUCT.colors.forEach((c, i) => {
+    if (colorQtys[i] === 0) return;
+    const firstImg = Array.isArray(c.img) ? c.img[0] : c.img;
+    const existing = cart.find(item => item.id === 'small-pouch-' + i);
+    if (existing) {
+      existing.qty = (existing.qty || 1) + colorQtys[i];
+    } else {
+      cart.push({
+        id:    'small-pouch-' + i,
+        name:  `Small Pouch — ${c.name_en}`,
+        price: PRODUCT.price_1 + ' DA',
+        image: firstImg,
+        color: c.name_en,
+        size:  '',
+        qty:   colorQtys[i],
+      });
+    }
+  });
+
+  localStorage.setItem('lunaris_cart', JSON.stringify(cart));
+  if (typeof updateCartUI === 'function') updateCartUI();
+
+  const price = calcPrice(total);
+  document.getElementById('cartMsg').textContent =
+    `✓ ${total} pouch${total>1?'es':''} added — ${price} DA — تمت الإضافة للسلة`;
+
+  colorQtys.fill(0);
+  PRODUCT.colors.forEach((_, i) => {
+    document.getElementById('count-' + i).textContent = '0';
+  });
+  refreshPriceDisplay();
+  refreshCartSummary();
+}
+
+document.getElementById('carouselPrev').addEventListener('click', () => carouselMove(-1));
+document.getElementById('carouselNext').addEventListener('click', () => carouselMove(1));
+document.getElementById('addBtn').addEventListener('click', addAllToCart);
+
+</script>
+<script src="cart.js"></script>
+<script src="product-data.js"></script>
+<script src="delivery-data.js"></script>
+<script src="inventory.js"></script>
+
+</body>
+</html>

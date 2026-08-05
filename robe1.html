@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product — Lunaris</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="cart.css">
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-JJV56RD5RZ"></script>
+ <script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-JJV56RD5RZ');
+ </script>
+
+ <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "x9m1yighan");
+ </script>
+
+  <!-- Meta Pixel Code -->
+ <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '899939093169077');
+  fbq('track', 'PageView');
+ </script>
+  <noscript><img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=899939093169077&ev=PageView&noscript=1"
+  /></noscript>
+  <!-- End Meta Pixel Code -->
+
+</head>
+<body>
+
+ <script>
+ /* ═══════════════════════════════════════════
+   THE NEW DYNAMIC SKELETON
+   This object is now empty. Your Google Sheet 
+   will automatically inject the data here.
+ ════════════════════════════════════════════ */
+ let PRODUCT = {
+   name_en: "Loading...",
+   name_ar: "تحميل...",
+   category: "...",
+   price: "...",
+   desc_en: "Loading details...",
+   desc_ar: "جاري تحميل التفاصيل...",
+   back_page:    "dresses.html",         // Which page the back button goes to
+   back_label:   "Back to Dresses - العودة إلى الفساتين",
+ };
+ </script>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; color: #1a1a1a; min-height: 100vh; overflow-x: hidden; position: relative; }
+
+    .bg-blur { position: fixed; inset: 0; z-index: 0; background-size: cover; background-position: center; filter: blur(10px) brightness(0.45) saturate(1.4); transform: scale(1.1); }
+
+    .bg-overlay { position: fixed; inset: 0; z-index: 1; background: rgba(20,10,15,0.45); }
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; background: rgba(255,255,255,0.08); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.12); }
+    .nav-logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 700; color: #fff; letter-spacing: 1px; display: flex; align-items: center; gap: 10px; }
+    .nav-logo img { height: 38px; width: auto; }
+    .nav-logo-sub { font-size: 9px; display: block; letter-spacing: 3px; color: rgba(255,255,255,0.55); font-family: 'Inter', sans-serif; font-weight: 300; text-transform: uppercase; }
+    .nav-logo-wrap { line-height: 1.2; }
+    .back-btn { color: rgba(255,255,255,0.8); font-size: 13px; font-weight: 500; letter-spacing: 0.5px; display: flex; align-items: center; gap: 8px; transition: color .2s; text-decoration: none; }
+    .back-btn:hover { color: #fff; }
+    .back-btn::before { content: '←'; font-size: 16px; }
+    .page-wrap { position: relative; z-index: 10; min-height: 100vh; padding: 100px 60px 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; max-width: 1300px; margin: 0 auto; }
+    .gallery-col { position: sticky; top: 100px; }
+    .main-image-wrap { width: 100%; aspect-ratio: 3/4; border-radius: 24px; overflow: hidden; background: rgba(255,255,255,0.08); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.15); margin-bottom: 16px; }
+    .main-image-wrap img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; transition: opacity .3s; }
+    .thumb-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .thumb { aspect-ratio: 3/4; border-radius: 12px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: border-color .2s, transform .2s; background: rgba(255,255,255,0.08); }
+    .thumb:hover { transform: translateY(-2px); border-color: rgba(255,255,255,0.4); }
+    .thumb.active { border-color: #C8547A; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    .info-col { padding-top: 20px; color: #fff; }
+    .product-tag { font-size: 16px; letter-spacing: 3px; text-transform: uppercase; color: #C8547A; font-weight: 600; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+    .product-tag::before { content: ''; display: block; width: 24px; height: 1px; background: #C8547A; }
+    .product-title { font-family: 'Playfair Display', serif; font-size: 52px; font-weight: 700; font-style: italic; color: #fff; line-height: 1.05; margin-bottom: 8px; }
+    .product-title-ar { font-size: 29px; font-weight: 300; color: rgba(255,255,255,0.55); direction: rtl; margin-bottom: 28px; }
+    .price-row { display: flex; align-items: center; gap: 16px; margin-bottom: 32px; }
+    .price-main { font-size: 36px; font-weight: 700; color: #fff; font-family: 'Playfair Display', serif; }
+    .price-label { font-size: 14px; color: rgba(255,255,255,0.45); letter-spacing: 1px; text-transform: uppercase; }
+    .divider { width: 100%; height: 1px; background: rgba(255,255,255,0.12); margin: 28px 0; }
+    .option-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 12px; font-weight: 500; }
+    .size-row { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 28px; }
+    .size-btn { width: 48px; height: 48px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,0.2); background: rgba(255,255,255,0.07); color: #fff; font-size: 13px; font-weight: 500; cursor: pointer; transition: all .2s; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(6px); }
+    .size-btn:hover { border-color: #C8547A; background: rgba(200,84,122,0.15); }
+    .size-btn.active { border-color: #C8547A; background: #C8547A; color: #fff; }
+    .size-btn.soldout { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
+    .color-row { display: flex; gap: 10px; margin-bottom: 36px; align-items: center; }
+    .color-dot { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: border-color .2s, transform .2s; }
+    .color-dot:hover { transform: scale(1.15); }
+    .color-dot.active { border-color: #fff; }
+    .color-name { font-size: 12px; color: rgba(255,255,255,0.55); margin-left: 8px; }
+    .product-desc { font-size: 18px; color: rgba(255,255,255,0.65); line-height: 1.8; margin-bottom: 36px; }
+    .product-desc-ar { font-size: 20px; color: rgba(255,255,255,0.45); line-height: 1.8; direction: rtl; margin-top: 12px; }
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-cart { flex: 1; min-width: 180px; background: #C8547A; color: #fff; border: none; border-radius: 50px; padding: 16px 32px; font-size: 28px; font-weight: 600; letter-spacing: 0.5px; cursor: pointer; transition: background .2s, transform .2s; display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .btn-cart:hover { background: #A03060; transform: translateY(-2px); }
+    .btn-cart svg { width: 18px; height: 18px; stroke: #fff; fill: none; }
+    .btn-wishlist { width: 54px; height: 54px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.25); background: rgba(255,255,255,0.08); backdrop-filter: blur(6px); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all .2s; }
+    .btn-wishlist:hover { border-color: #C8547A; background: rgba(200,84,122,0.15); }
+    .btn-wishlist svg { width: 20px; height: 20px; stroke: #fff; fill: none; }
+    .cart-notice { margin-top: 16px; font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 0.5px; text-align: center; }
+    .details-row { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 32px; }
+    .detail-pill { background: rgba(255,255,255,0.07); backdrop-filter: blur(6px); border: 1px solid rgba(255,255,255,0.12); border-radius: 50px; padding: 8px 16px; font-size: 11px; color: rgba(255,255,255,0.65); letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
+    .detail-pill svg { width: 13px; height: 13px; stroke: #C8547A; fill: none; }
+    @media (max-width: 1024px) { .page-wrap { grid-template-columns: 1fr; padding: 90px 28px 48px; gap: 36px; } .gallery-col { position: static; } nav { padding: 14px 24px; } }
+    @media (max-width: 640px) { .product-title { font-size: 38px; } .cta-row { flex-direction: column; } .btn-wishlist { width: 100%; border-radius: 50px; } }
+  </style>
+
+  <div class="bg-blur" id="bgBlur"></div>
+  <div class="bg-overlay"></div>
+
+  <nav>
+    <div class="nav-logo">
+      <img src="logo.webp" alt="Lunaris" />
+      <div class="nav-logo-wrap">
+        LUNARIS
+        <span class="nav-logo-sub">home fashion · great algeria</span>
+      </div>
+    </div>
+    <a class="back-btn" id="backBtn">Back</a>
+    <button class="cart-nav-btn" onclick="window.location.href='checkout.html'">
+      <svg viewBox="0 0 24 24">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+      <span id="cartBadge"></span>
+    </button>
+  </nav>
+
+  <div class="page-wrap">
+    <div class="gallery-col">
+      <div class="main-image-wrap">
+
+        <img id="mainImg" data-product="LUN-1" src="loading-placeholder.jpg" alt="Lunaris Product" />
+
+      </div>
+      <div class="thumb-row" id="thumbRow"></div>
+    </div>
+
+    <div class="info-col">
+      <p class="product-tag" id="pTag"></p>
+      <h1 class="product-title" id="pTitle"></h1>
+      <p class="product-title-ar" id="pTitleAr"></p>
+      <div class="price-row">
+        <div class="price-main" id="pPrice"></div>
+
+        <div class="price-label">Free delivery<br>over <span id="announceThreshold">3500</span> DA</div>
+      </div>
+      <div class="divider"></div>
+      <p class="option-label">Select Size — المقاس</p>
+      <div class="size-row" id="sizeRow"></div>
+      <div class="divider"></div>
+      <p class="option-label">Available Stock — المخزون المتاح</p>
+      <p style="font-size: 18px; color: #C8547A; font-weight: 600; margin-bottom: 24px;">
+
+        <span id="live-stock" data-product="LUN-1">Loading...</span> Left In Stock
+      </p>
+      <div class="divider"></div>
+      <p class="product-desc" id="pDesc"></p>
+      <p class="product-desc-ar" id="pDescAr"></p>
+      <div class="cta-row">
+        <button class="btn-cart" onclick="addToCart()">
+          <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          Add to Cart — أضف للسلة
+        </button>
+        <button class="btn-wishlist">
+          <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </button>
+      </div>
+      <p class="cart-notice" id="cartMsg"></p>
+      <button class="btn-cart" onclick="window.location.href='checkout.html'" style="margin-top:12px;background:transparent;border:1.5px solid rgba(255,255,255,0.35);color:#fff;">
+        Checkout — الدفع
+      </button>
+      <div class="details-row">
+        <div class="detail-pill"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>Handmade in great Algeria</div>
+        <div class="detail-pill"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>Premium Fabric</div>
+        <div class="detail-pill"><svg viewBox="0 0 24 24"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>Free Delivery +<span id="trustThreshold">3500</span> DA</div>
+        <div class="detail-pill"><svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3"/></svg>Easy Returns</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── Build page from PRODUCT config
+    document.title = PRODUCT.name_en + ' — Lunaris';
+
+    document.getElementById('bgBlur').style.backgroundImage = `url('flowers2.jpg')`;
+
+    document.getElementById('backBtn').href = PRODUCT.back_page;
+    document.getElementById('backBtn').textContent = PRODUCT.back_label;
+    document.getElementById('pTag').textContent = PRODUCT.category;
+    document.getElementById('pTitle').textContent = PRODUCT.name_en;
+    document.getElementById('pTitleAr').textContent = PRODUCT.name_ar;
+    document.getElementById('pPrice').textContent = PRODUCT.price;
+    document.getElementById('pDesc').textContent = PRODUCT.desc_en;
+    document.getElementById('pDescAr').textContent = PRODUCT.desc_ar;
+
+  </script>
+  <script src="cart.js"></script>
+
+  <script src="product-data.js"></script>
+<script src="delivery-data.js"></script>
+<script src="inventory.js"></script>
+
+</body>
+</html>
