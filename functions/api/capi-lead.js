@@ -1,30 +1,11 @@
-/* functions/api/capi-purchase.js
+/* functions/api/capi-lead.js
    ============================================================
-   CLOUDFLARE PAGES FUNCTION (replaces the old Netlify Function
-   at netlify/functions/capi-purchase.js).
-
-   Sends a "Purchase" event to Meta's Conversions API from the
-   server side. The access token lives ONLY here, as a Cloudflare
-   environment variable/secret — it never touches page HTML/JS,
-   so it can't be scraped from view-source.
-
-   ROUTING: Cloudflare Pages Functions map file path -> URL path.
-   This file at /functions/api/capi-purchase.js is reachable at:
-       https://<your-site>/api/capi-purchase
-   which is exactly what checkout.html now calls (was previously
-   /.netlify/functions/capi-purchase).
-
-   HOW TO SET THE SECRETS (one-time, per Cloudflare Pages project):
-     Cloudflare dashboard -> your Pages project -> Settings ->
-     Environment variables -> add for BOTH Production and Preview:
-       FB_PIXEL_ID    = 899939093169077
-       FB_CAPI_TOKEN  = <the long token from Meta Events Manager>
-     (or via CLI: `wrangler pages secret put FB_CAPI_TOKEN`)
-
-   Cloudflare Workers/Pages Functions run on the Workers runtime,
-   NOT Node.js — there is no `require('crypto')` here. Hashing uses
-   the standard Web Crypto API (crypto.subtle) instead, which is
-   built in and needs no dependency.
+   TEMPORARY DEBUG VERSION — same logic as before, except:
+   if the Supabase insert fails, the actual error text from
+   Supabase is returned in the response body instead of only
+   being logged. Once we find and fix the real problem, swap
+   this back to the quiet version (or just remove the "debug"
+   field from the response).
    ============================================================ */
 
 async function sha256Hex(value) {
@@ -72,7 +53,7 @@ export async function onRequestPost(context) {
   }
 
   // ---------------------------------------------------------
-  // 1. FIRE META CAPI "LEAD" EVENT
+  // 1. FIRE META CAPI "LEAD" EVENT (unchanged)
   // ---------------------------------------------------------
   const pixelId = env.FB_PIXEL_ID;
   const accessToken = env.FB_CAPI_TOKEN;
@@ -100,10 +81,7 @@ export async function onRequestPost(context) {
           fbp: fbp,
           fbc: fbc
         },
-        custom_data: {
-          value: value,
-          currency: currency,
-        },
+        custom_data: { value: value, currency: currency },
       }],
     };
 
@@ -115,10 +93,12 @@ export async function onRequestPost(context) {
   }
 
   // ---------------------------------------------------------
-  // 2. INSERT ROW INTO SUPABASE
+  // 2. INSERT ROW INTO SUPABASE — now with the real error surfaced
   // ---------------------------------------------------------
   const supabaseUrl = "https://tnotrlkzqrbahsqfvnlv.supabase.co";
   const supabaseKey = "sb_publishable_z1FWCUpdC-117-o1w1L-Ew_VbHbOgKn";
+
+  let supabaseDebug = null;
 
   try {
     const supabaseResponse = await fetch(`${supabaseUrl}/rest/v1/myclicks`, {
@@ -134,8 +114,7 @@ export async function onRequestPost(context) {
         lname: lname,
         phone: phone,
         wilaya: wilaya,
-        commune: commune, 
-        // address omitted intentionally
+        commune: commune,
         total_amount: value,
         fbp: fbp,
         fbc: fbc,
@@ -144,13 +123,16 @@ export async function onRequestPost(context) {
     });
 
     if (!supabaseResponse.ok) {
-      console.error("Supabase insert failed:", await supabaseResponse.text());
+      const errText = await supabaseResponse.text();
+      console.error("Supabase insert failed:", errText);
+      supabaseDebug = { status: supabaseResponse.status, error: errText };
     }
   } catch (err) {
     console.error("Supabase request failed:", err);
+    supabaseDebug = { error: String(err) };
   }
 
-  return new Response(JSON.stringify({ success: true }), {
+  return new Response(JSON.stringify({ success: true, supabaseDebug }), {
     status: 200,
     headers: { 'Content-Type': 'application/json' }
   });
